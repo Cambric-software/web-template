@@ -28,3 +28,4 @@ This template is designed for static hosting. It can be deployed to GitHub Pages
 - Deployment should avoid exposing secrets or private configuration values.
 - `dist/` is generated during validation/build and should not be committed as source. The Pages workflow creates its own deployable artifact from `index/`, `services/`, `config/`, and the product manifest.
 - The workflow does not try to create the Pages site because the default `GITHUB_TOKEN` cannot grant repository administration access. Pages must be enabled once in repository settings before the workflow can deploy.
+- Release tags beginning with `v` trigger the release workflow. Tags ending in `-test`, `-alpha`, `-beta`, or `-prerelease` are published as GitHub prereleases; tags such as `v1.0.0` and `v1.0.0-release` are published as normal releases.

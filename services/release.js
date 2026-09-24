@@ -34,8 +34,22 @@
             body: raw.body || raw.description || "",
             assets: Array.isArray(raw.assets) ? raw.assets.map(normalizeAsset).filter(Boolean) : [],
             checkedAt: raw.checkedAt || new Date().toISOString(),
+            isPrerelease: Boolean(raw.prerelease),
             isCached: Boolean(raw.isCached)
         };
+    }
+
+    function selectLatestRelease(rawReleases, repository) {
+        if (!Array.isArray(rawReleases)) {
+            return null;
+        }
+
+        const releases = rawReleases
+            .filter((release) => release && !release.draft)
+            .map((release) => normalizeReleaseMetadata(release, repository))
+            .filter(Boolean);
+
+        return releases[0] || null;
     }
 
     class CambricReleaseManager {
@@ -90,7 +104,7 @@
                     throw new Error("Fetch API is unavailable.");
                 }
 
-                const response = await fetch(`${config.apiBase}/repos/${config.repository}/releases/latest`, {
+                const response = await fetch(`${config.apiBase}/repos/${config.repository}/releases?per_page=20`, {
                     headers: { Accept: "application/vnd.github+json" }
                 });
 
@@ -98,8 +112,8 @@
                     throw new Error(`Release request failed: ${response.status}`);
                 }
 
-                const release = await response.json();
-                const metadata = normalizeReleaseMetadata(release, config.repository);
+                const releases = await response.json();
+                const metadata = selectLatestRelease(releases, config.repository);
 
                 if (!metadata) {
                     throw new Error("Release metadata was malformed.");
@@ -131,7 +145,8 @@
             CambricRelease,
             CambricReleaseManager,
             CambricReleaseInstance,
-            normalizeReleaseMetadata
+            normalizeReleaseMetadata,
+            selectLatestRelease
         };
     }
 

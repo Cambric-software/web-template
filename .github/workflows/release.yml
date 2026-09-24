@@ -31,7 +31,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          release_args=()
+          case "$GITHUB_REF_NAME" in
+            *-test|*-alpha|*-beta|*-prerelease)
+              release_args+=(--prerelease)
+              ;;
+          esac
           gh release create "$GITHUB_REF_NAME" \
             --title "Cambric Web Template $GITHUB_REF_NAME" \
             --generate-notes \
+            "${release_args[@]}" \
             release/*
