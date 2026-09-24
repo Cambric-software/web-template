@@ -1,0 +1,25 @@
+﻿name: Test
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check HTML exists
+        run: test -f index/index.html
+
+      - name: Check CSS exists
+        run: test -f index/css/main.css
+
+      - name: Check JavaScript exists
+        run: test -f index/js/main.js
+
+      - name: Run JavaScript test
+        run: node tests/basic.test.js

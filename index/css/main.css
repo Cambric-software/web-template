@@ -1,0 +1,192 @@
+﻿:root {
+    --bg: #f8fafc;
+    --panel: #ffffff;
+    --panel-alt: #eef4ff;
+    --ink: #0f172a;
+    --muted: #475569;
+    --primary: #1d4ed8;
+    --primary-strong: #1e3a8a;
+    --border: #dbe4f0;
+    --success: #166534;
+    --warning: #92400e;
+    --shadow: 0 14px 44px rgba(15, 23, 42, 0.08);
+    --radius: 18px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    color: var(--ink);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #edf4ff 100%);
+    color: var(--ink);
+}
+
+.cambric-page {
+    width: min(1100px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 32px 0 48px;
+}
+
+.cambric-header,
+.cambric-card,
+.cambric-footer {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.cambric-header {
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--primary);
+    font-weight: 700;
+    margin: 0 0 8px;
+    font-size: 0.72rem;
+}
+
+h1, h2, p { margin-top: 0; }
+
+h1 {
+    margin-bottom: 0;
+    font-size: clamp(2rem, 3vw, 2.7rem);
+}
+
+.cambric-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.cambric-card {
+    padding: 24px 28px;
+}
+
+.section-label {
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.release-row {
+    margin: 16px 0;
+}
+
+.download-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.download-button,
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    transition: transform 0.2s ease, background 0.2s ease;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.download-button {
+    background: var(--primary);
+    color: white;
+}
+
+.text-link {
+    color: var(--primary-strong);
+}
+
+.download-button:hover,
+.text-link:hover {
+    transform: translateY(-1px);
+}
+
+.feature-list {
+    margin: 16px 0 0;
+    padding-left: 18px;
+    color: var(--muted);
+}
+
+.status-pill {
+    border-radius: 999px;
+    padding: 0.6rem 0.9rem;
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.status-pill[data-state="online"] {
+    background: rgba(22, 101, 52, 0.08);
+    color: var(--success);
+    border-color: rgba(22, 101, 52, 0.2);
+}
+
+.status-pill[data-state="offline"] {
+    background: rgba(146, 64, 14, 0.08);
+    color: var(--warning);
+    border-color: rgba(146, 64, 14, 0.2);
+}
+
+.cambric-footer {
+    margin-top: 24px;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+}
+
+:focus-visible {
+    outline: 3px solid rgba(29, 78, 216, 0.45);
+    outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+    .cambric-page {
+        width: min(100% - 20px, 100%);
+        padding-top: 16px;
+    }
+
+    .cambric-header,
+    .cambric-card,
+    .cambric-footer {
+        padding: 18px 16px;
+    }
+
+    .cambric-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cambric-header,
+    .cambric-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}

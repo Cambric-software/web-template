@@ -1,0 +1,35 @@
+﻿name: Security
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Search for obvious private-key material
+        shell: bash
+        run: |
+          if grep -RInE \
+            --exclude-dir=.git \
+            --exclude='*.md' \
+            'BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY' .; then
+            echo "Potential private key material detected."
+            exit 1
+          fi
+
+      - name: Check for common hard-coded API key patterns
+        shell: bash
+        run: |
+          if grep -RInE \
+            --exclude-dir=.git \
+            --exclude='*.md' \
+            'sk-[A-Za-z0-9]{20,}' .; then
+            echo "Potential hard-coded API key detected."
+            exit 1
+          fi

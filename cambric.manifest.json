@@ -1,0 +1,30 @@
+{
+  "manifestVersion": 1,
+  "productId": "cambric-web-product",
+  "name": "Cambric Web Product",
+  "description": "Cambric local-first web template for product download, release discovery, cache management, and privacy-first local tooling.",
+  "version": "1.0.0",
+  "template": "web-template",
+  "templateVersion": "1.0.0",
+  "platforms": ["web"],
+  "supportedPlatforms": ["web", "windows", "linux", "android"],
+  "capabilities": [
+    "offline",
+    "cache",
+    "release-discovery",
+    "download-page",
+    "localization",
+    "ecosystem",
+    "feature-flags"
+  ],
+  "releaseRepository": "cambricsoftware/web-template",
+  "configurationVersion": 1,
+  "enabledCapabilities": [
+    "offline",
+    "cache",
+    "release-discovery",
+    "download-page",
+    "localization",
+    "ecosystem"
+  ]
+}

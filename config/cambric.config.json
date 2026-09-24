@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "environment": "development",
+  "product": {
+    "id": "cambric-web-product",
+    "name": "Cambric Web Product",
+    "description": "Cambric local-first web template for product download, release discovery, cache management, and privacy-first local tooling.",
+    "version": "1.0.0",
+    "templateVersion": "1.0.0",
+    "websiteTitle": "Cambric Web Product",
+    "owner": "Cambric Software"
+  },
+  "release": {
+    "provider": "github",
+    "repository": "cambricsoftware/web-template",
+    "apiBase": "https://api.github.com",
+    "enabled": true,
+    "allowFallbackCache": true,
+    "cacheDurationMs": 86400000,
+    "checkOnLoad": true
+  },
+  "cache": {
+    "enabled": true,
+    "prefix": "cambric-",
+    "version": "cambric-web-v1",
+    "maxEntries": 200,
+    "ttlMs": 86400000
+  },
+  "features": {
+    "offline": true,
+    "cache": true,
+    "releaseDiscovery": true,
+    "downloadPage": true,
+    "ecosystem": true,
+    "localization": true,
+    "pwa": false,
+    "extensions": false
+  },
+  "security": {
+    "cspEnabled": false,
+    "secretScanEnabled": true,
+    "allowExternalDownloads": true,
+    "requireHttpsForSensitiveActions": false,
+    "safeUrlPatterns": [
+      "https://",
+      "http://localhost",
+      "blob:",
+      "file://"
+    ]
+  },
+  "localization": {
+    "defaultLanguage": "en",
+    "supportedLanguages": ["en", "ar"],
+    "rtlLanguages": ["ar"]
+  },
+  "update": {
+    "enabled": true,
+    "checkOnLoad": true,
+    "cacheTtlMs": 86400000
+  },
+  "download": {
+    "platforms": ["windows", "linux", "android", "web"],
+    "defaultPlatform": "web"
+  },
+  "privacy": {
+    "localFirst": true,
+    "noTelemetry": true,
+    "noServerRequired": true
+  },
+  "environmentOverrides": {}
+}

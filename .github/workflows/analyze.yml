@@ -1,0 +1,32 @@
+﻿name: Analyze
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate required structure
+        shell: bash
+        run: |
+          test -f index/index.html
+          test -f index/css/main.css
+          test -f index/js/main.js
+          test -f security/security.js
+          test -f services/storage.js
+          test -f services/cache.js
+          test -f services/download.js
+
+      - name: Basic JavaScript syntax check
+        run: |
+          node --check index/js/main.js
+          node --check services/storage.js
+          node --check services/cache.js
+          node --check services/download.js
+          node --check security/security.js

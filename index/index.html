@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cambric product download and release page">
+    <meta name="theme-color" content="#0f172a">
+    <title>Cambric Product</title>
+    <link rel="manifest" href="/index/manifest.webmanifest">
+    <link rel="stylesheet" href="/index/css/main.css">
+
+    <script src="/services/version.js"></script>
+    <script src="/index/js/version.js"></script>
+    <script src="/services/storage.js"></script>
+    <script src="/services/cache.js"></script>
+    <script src="/services/i18n.js"></script>
+    <script src="/services/offline.js"></script>
+    <script src="/services/ecosystem.js"></script>
+    <script src="/services/release.js"></script>
+    <script src="/services/download.js"></script>
+    <script src="/index/js/config.js"></script>
+    <script src="/index/js/app.js"></script>
+</head>
+<body>
+    <main class="cambric-page">
+        <header class="cambric-header">
+            <div>
+                <p class="eyebrow">Cambric</p>
+                <h1 id="product-name">Cambric Product</h1>
+            </div>
+            <div class="status-pill" id="connectivity-status" data-state="online">Online</div>
+        </header>
+
+        <section class="cambric-grid">
+            <article class="cambric-card">
+                <p class="section-label">Current release</p>
+                <h2 id="release-name">Loading release information...</h2>
+                <p class="release-row">
+                    <strong>Version:</strong>
+                    <span data-release-version>Loading...</span>
+                </p>
+                <div class="download-actions" id="downloads"></div>
+                <a class="text-link" data-release-url hidden target="_blank" rel="noopener noreferrer">Release information</a>
+            </article>
+
+            <article class="cambric-card">
+                <p class="section-label">Installation</p>
+                <h2>Local-first setup</h2>
+                <p>
+                    This template keeps the website usable without requiring a mandatory backend. Release metadata, caching,
+                    and local preferences stay on the device by default.
+                </p>
+                <ul class="feature-list">
+                    <li>Offline-safe browsing</li>
+                    <li>Version-aware downloads</li>
+                    <li>Cached release fallback</li>
+                    <li>Configurable product identity</li>
+                </ul>
+            </article>
+        </section>
+
+        <footer class="cambric-footer">
+            <span>Version</span>
+            <span data-cambric-version>...</span>
+        </footer>
+    </main>
+</body>
+</html>
