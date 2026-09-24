@@ -6,7 +6,7 @@
     allowNetworkEnhancements: true,
     productId: "cambric-web-product",
     productName: "Cambric Web Product",
-    version: "1.0.0",
+    version: "1.0.1",
     templateVersion: "1.0.0"
 };
 

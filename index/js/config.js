@@ -12,7 +12,7 @@
                 id: "cambric-web-product",
                 name: "Cambric Web Product",
                 description: "Cambric local-first web template.",
-                version: "1.0.0",
+                version: "1.0.1",
                 websiteTitle: "Cambric Web Product"
             },
             release: {

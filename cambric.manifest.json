@@ -3,7 +3,7 @@
   "productId": "cambric-web-product",
   "name": "Cambric Web Product",
   "description": "Cambric local-first web template for product download, release discovery, cache management, and privacy-first local tooling.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "template": "web-template",
   "templateVersion": "1.0.0",
   "platforms": ["web"],

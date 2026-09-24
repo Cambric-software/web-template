@@ -14,7 +14,7 @@
     CambricEcosystem.registerProduct({
         productId: window.CAMBRIC_CONFIG?.product?.id || "cambric-web-product",
         name: window.CAMBRIC_CONFIG?.product?.name || "Cambric Web Product",
-        version: window.CAMBRIC_CONFIG?.product?.version || window.CAMBRIC_VERSION || "1.0.0",
+        version: window.CAMBRIC_CONFIG?.product?.version || window.CAMBRIC_VERSION || "1.0.1",
         platform: "web",
         capabilities: ["offline", "cache", "release-discovery"],
         ecosystemVersion: 1,

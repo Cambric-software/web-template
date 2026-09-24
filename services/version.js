@@ -1,5 +1,5 @@
 (function (global) {
-    const CAMBRIC_VERSION = "1.0.0";
+    const CAMBRIC_VERSION = "1.0.1";
     const TEMPLATE_VERSION = "1.0.0";
     const BUILD_DATE = "2026-09-24";
     const BUILD_ID = "cambric-web-template-v1";

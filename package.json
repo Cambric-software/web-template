@@ -1,6 +1,6 @@
 {
   "name": "cambric-web-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Cambric local-first web template foundation.",
   "bin": {

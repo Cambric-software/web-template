@@ -1,5 +1,5 @@
 ﻿const CambricVersion = (typeof window !== "undefined" && window.CambricVersion) || {
-    current: "1.0.0",
+    current: "1.0.1",
     templateVersion: "1.0.0",
     get version() {
         return this.current;
