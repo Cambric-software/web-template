@@ -44,7 +44,7 @@
     updateOfflineState();
 
     if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/index/service-worker.js").catch(() => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {
             setStatus("Offline cache unavailable", "offline");
         });
     }

@@ -1,12 +1,28 @@
 ﻿const CACHE_NAME = "cambric-web-v1";
 
-const STATIC_ASSETS = [
-    "/",
-    "/index/index.html",
-    "/index/css/main.css",
-    "/index/js/version.js",
-    "/index/js/app.js"
+const STATIC_ASSET_PATHS = [
+    "",
+    "index.html",
+    "manifest.webmanifest",
+    "index/assets/cambric-logo.png",
+    "index/css/main.css",
+    "index/js/version.js",
+    "index/js/config.js",
+    "index/js/app.js",
+    "services/version.js",
+    "services/storage.js",
+    "services/cache.js",
+    "services/i18n.js",
+    "services/offline.js",
+    "services/ecosystem.js",
+    "services/release.js",
+    "services/download.js",
+    "config/cambric.config.json"
 ];
+
+const STATIC_ASSETS = STATIC_ASSET_PATHS.map(assetPath =>
+    new URL(assetPath, self.registration.scope).toString()
+);
 
 self.addEventListener("install", event => {
     event.waitUntil(

@@ -2,9 +2,15 @@
   "name": "Cambric Web Product",
   "short_name": "Cambric",
   "description": "Cambric local-first web template for privacy-preserving release management and product downloads.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#0f172a",
-  "icons": []
+  "icons": [
+    {
+      "src": "./assets/cambric-logo.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
 }

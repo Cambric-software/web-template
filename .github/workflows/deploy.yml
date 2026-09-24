@@ -35,6 +35,7 @@ jobs:
           cp index/manifest.webmanifest dist/manifest.webmanifest
           cp index/service-worker.js dist/service-worker.js
           cp -r index/css dist/index/
+          cp -r index/assets dist/index/
           cp -r index/js dist/index/
           cp -r services dist/services
           cp -r config dist/config
