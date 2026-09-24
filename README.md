@@ -32,6 +32,8 @@ node bin/cambric.js setup "My Product" "My description"
 node bin/cambric.js doctor
 node bin/cambric.js build
 node bin/cambric.js version
+npm run dev
+npm run verify
 ```
 
 ## Structure
@@ -42,6 +44,8 @@ node bin/cambric.js version
 - `security/` contains safe validation and secret scanning.
 - `scripts/` contains setup, doctor, and build tooling.
 - `tests/` contains automated verification.
+- `scripts/serve.js` provides a dependency-free local website preview.
+- `scripts/verify.js` runs tests, diagnostics, and a clean build in one command.
 
 ## Production notes
 

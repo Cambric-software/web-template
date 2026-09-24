@@ -12,7 +12,18 @@
 npm test
 npm run doctor
 npm run build
+npm run verify
 ```
+
+## Local preview
+
+Build and serve the same `dist/` layout used by static hosting:
+
+```bash
+npm run dev
+```
+
+Then open `http://localhost:4173`. Set `PORT` to use another port.
 
 ## Local-first workflow
 
