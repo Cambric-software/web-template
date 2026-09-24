@@ -10,6 +10,7 @@
 
 ```bash
 npm test
+npm run test:browser
 npm run doctor
 npm run build
 npm run verify
@@ -32,3 +33,5 @@ Then open `http://localhost:4173`. Set `PORT` to use another port.
 3. Verify the homepage, responsive layout, and offline status behavior in a browser.
 4. Validate the cache and offline behavior after changes.
 5. Run security checks and CI validation before publishing the website.
+
+Browser tests cover desktop and mobile Chromium, theme persistence, form validation, the component gallery, favicon loading, and critical accessibility violations.

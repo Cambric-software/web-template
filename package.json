@@ -11,6 +11,7 @@
     "doctor": "node scripts/doctor.js",
     "diagnose": "node scripts/doctor.js",
     "test": "node tests/cambric-core.test.js && node tests/basic.test.js",
+    "test:browser": "playwright test",
     "build": "node scripts/build.js",
     "verify": "node scripts/verify.js",
     "dev": "node scripts/serve.js",
@@ -21,5 +22,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0"
   }
 }

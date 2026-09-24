@@ -1,0 +1,30 @@
+name: Website Health
+
+on:
+  workflow_run:
+    workflows: ["Deploy"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  health:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: https://${{ github.event.workflow_run.repository.owner.login }}.github.io/${{ github.event.workflow_run.repository.name }}/
+
+    steps:
+      - name: Check homepage
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --retry 5 --retry-delay 5 "$SITE_URL" | grep -q 'id="product-name"'
+
+      - name: Check favicon
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --retry 5 --retry-delay 5 \
+            "${SITE_URL}index/assets/cambric-logo.png" \
+            --output /tmp/cambric-logo.png
+          test -s /tmp/cambric-logo.png

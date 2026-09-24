@@ -1,5 +1,6 @@
 ﻿const SiteConfig = {
     siteName: "Cambric Website",
+    siteUrl: "https://example.com",
     companyName: "Cambric Software",
     description: "Cambric Software local-first website template.",
     localFirst: true,

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A local-first, privacy-aware website foundation by Cambric.">
     <meta name="theme-color" content="#0f172a">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; worker-src 'self'">
     <link rel="icon" type="image/png" href="./index/assets/cambric-logo.png">
     <title>Cambric Website</title>
     <link rel="manifest" href="./index/manifest.webmanifest">
@@ -14,14 +15,25 @@
     <script src="./index/js/version.js"></script>
     <script src="./services/storage.js"></script>
     <script src="./services/cache.js"></script>
+    <script src="./services/forms.js"></script>
     <script src="./services/i18n.js"></script>
     <script src="./services/offline.js"></script>
     <script src="./services/ecosystem.js"></script>
     <script src="./index/js/config.js"></script>
     <script src="./index/js/app.js"></script>
+    <script src="./index/js/site.js"></script>
 </head>
 <body>
     <main class="cambric-page">
+        <nav class="site-nav" aria-label="Main navigation">
+            <a class="brand-mark" href="./">Cambric</a>
+            <div class="site-nav-links">
+                <a href="#principles">Principles</a>
+                <a href="#contact">Contact</a>
+                <a href="./components.html">Components</a>
+                <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">Dark mode</button>
+            </div>
+        </nav>
         <header class="cambric-header">
             <div>
                 <p class="eyebrow">Cambric</p>
@@ -83,6 +95,33 @@
                 <li>English and Arabic localization</li>
                 <li>Privacy-first defaults</li>
             </ul>
+        </section>
+
+        <section class="cambric-section contact-section" id="contact">
+            <div class="section-heading">
+                <p class="section-label">Start a conversation</p>
+                <h2>Make this foundation yours.</h2>
+                <p>The form is intentionally local-first. Connect it to your chosen service when the project is ready.</p>
+            </div>
+            <form class="contact-form" data-contact-form novalidate>
+                <label>
+                    Name
+                    <input name="name" autocomplete="name" required>
+                    <span class="field-error" data-error-for="name" role="alert"></span>
+                </label>
+                <label>
+                    Email
+                    <input name="email" type="email" autocomplete="email" required>
+                    <span class="field-error" data-error-for="email" role="alert"></span>
+                </label>
+                <label class="field-wide">
+                    Message
+                    <textarea name="message" rows="5" required></textarea>
+                    <span class="field-error" data-error-for="message" role="alert"></span>
+                </label>
+                <button class="primary-button" type="submit">Validate message</button>
+                <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+            </form>
         </section>
 
         <footer class="cambric-footer">

@@ -25,6 +25,7 @@ function renderWizardSummary(output, values, enabled) {
     output.write(`  ${colorize('Name', 'cyan', enabled)}        ${values.projectName}\n`);
     output.write(`  ${colorize('Product ID', 'cyan', enabled)}  ${toSafeId(values.projectName)}\n`);
     output.write(`  ${colorize('Description', 'cyan', enabled)} ${values.description}\n`);
+    output.write(`  ${colorize('Site URL', 'cyan', enabled)}   ${values.siteUrl || 'https://example.com'}\n`);
     output.write(`  ${colorize('Folder', 'cyan', enabled)}      ${values.newRootName || 'Keep current folder'}\n\n`);
 }
 
@@ -120,8 +121,9 @@ async function promptForWizardValues(input = process.stdin, output = process.std
         return {
             projectName: lines[0] || 'My Cambric Website',
             description: lines[1] || 'Local-first Cambric product',
-            newRootName: lines[2] || '',
-            confirmed: lines[3] ? !['n', 'no', 'cancel'].includes(lines[3].toLowerCase()) : true
+            siteUrl: lines[2] || 'https://example.com',
+            newRootName: lines[3] || '',
+            confirmed: lines[4] ? !['n', 'no', 'cancel'].includes(lines[4].toLowerCase()) : true
         };
     }
 
@@ -138,8 +140,9 @@ async function promptForWizardValues(input = process.stdin, output = process.std
 
     const projectName = await ask('Project name', 'My Cambric Website');
     const description = await ask('Project description (optional)', 'Local-first Cambric product');
+    const siteUrl = await ask('Website URL (optional)', 'https://example.com');
     const newRootName = await ask('Rename project folder (optional)', '');
-    const values = { projectName, description, newRootName };
+    const values = { projectName, description, siteUrl, newRootName };
     renderWizardSummary(output, values, useColor);
     const confirmation = await ask('Apply these settings? (Y/n)', 'Y');
 
@@ -151,10 +154,15 @@ function setupProject(options = {}) {
     const root = options.root || process.cwd();
     const projectName = sanitizeProjectName(options.projectName || 'Cambric Website');
     const description = sanitizeProjectName(options.description || 'Cambric local-first website');
+    const siteUrl = sanitizeProjectName(options.siteUrl || 'https://example.com').replace(/\/$/, '');
     const productId = sanitizeProjectName(options.productId || toSafeId(projectName));
 
     if (!projectName) {
         throw new Error('Project name cannot be empty.');
+    }
+
+    if (siteUrl && !/^https?:\/\/[^\s]+$/i.test(siteUrl)) {
+        throw new Error('Website URL must start with http:// or https://.');
     }
 
     const configPath = path.join(root, 'config', 'cambric.config.json');
@@ -171,6 +179,8 @@ function setupProject(options = {}) {
     config.product.description = description;
     config.product.id = productId;
     config.product.websiteTitle = projectName;
+    config.site = config.site || {};
+    config.site.url = siteUrl;
     manifest.name = projectName;
     manifest.description = description;
     manifest.productId = productId;
@@ -185,6 +195,7 @@ function setupProject(options = {}) {
         'cambric-web-product': productId,
         'cambric-web-template': productId,
         'web-template': productId,
+        'https://example.com': siteUrl,
         'Cambric local-first website': description,
         'This repository is a local-first, privacy-preserving web foundation for Cambric products.': `This project is a local-first, privacy-preserving web foundation for ${projectName}.`
     };
@@ -228,6 +239,7 @@ function setupProject(options = {}) {
             projectName,
             productId,
             description,
+            siteUrl,
             config,
             manifest,
             root: result.root,
@@ -240,6 +252,7 @@ function setupProject(options = {}) {
         projectName,
         productId,
         description,
+        siteUrl,
         config,
         manifest,
         root,
@@ -260,6 +273,7 @@ async function runWizard() {
         root: projectRoot,
         projectName: values.projectName,
         description: values.description,
+        siteUrl: values.siteUrl,
         productId: safeName,
         newRootName: values.newRootName || ''
     });

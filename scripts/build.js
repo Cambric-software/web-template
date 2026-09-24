@@ -21,9 +21,29 @@ function buildProject(root = process.cwd()) {
     }
 
     fs.mkdirSync(distDir, { recursive: true });
-    fs.cpSync(path.join(root, 'index'), distDir, { recursive: true });
+    fs.mkdirSync(path.join(distDir, 'index'), { recursive: true });
+    for (const file of ['index.html', 'components.html', 'manifest.webmanifest', 'service-worker.js']) {
+        const source = path.join(root, 'index', file);
+        if (fs.existsSync(source)) {
+            const destination = file === 'index.html' ? path.join(distDir, file) : path.join(distDir, file);
+            fs.copyFileSync(source, destination);
+        }
+    }
+    for (const directory of ['css', 'assets', 'js']) {
+        const source = path.join(root, 'index', directory);
+        if (fs.existsSync(source)) {
+            fs.cpSync(source, path.join(distDir, 'index', directory), { recursive: true });
+        }
+    }
+    fs.cpSync(path.join(root, 'services'), path.join(distDir, 'services'), { recursive: true });
     fs.copyFileSync(path.join(root, 'config', 'cambric.config.json'), path.join(distDir, 'cambric.config.json'));
     fs.copyFileSync(path.join(root, 'cambric.manifest.json'), path.join(distDir, 'cambric.manifest.json'));
+    for (const file of ['robots.txt', 'sitemap.xml']) {
+        const source = path.join(root, file);
+        if (fs.existsSync(source)) {
+            fs.copyFileSync(source, path.join(distDir, file));
+        }
+    }
 
     console.log('Build validation succeeded and prepared dist output.');
     return { distDir, validation };

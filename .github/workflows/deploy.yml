@@ -32,6 +32,7 @@ jobs:
           mkdir -p dist
           mkdir -p dist/index
           cp index/index.html dist/index.html
+          cp index/components.html dist/components.html
           cp index/manifest.webmanifest dist/manifest.webmanifest
           cp index/service-worker.js dist/service-worker.js
           cp -r index/css dist/index/
@@ -40,6 +41,8 @@ jobs:
           cp -r services dist/services
           cp -r config dist/config
           cp cambric.manifest.json dist/cambric.manifest.json
+          cp robots.txt dist/robots.txt
+          cp sitemap.xml dist/sitemap.xml
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

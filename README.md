@@ -58,6 +58,8 @@ npm run verify
 
 ```bash
 npm test
+npm run test:browser
 npm run doctor
 npm run build
+npm run verify
 ```

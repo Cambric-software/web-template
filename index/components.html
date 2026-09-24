@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cambric website template component gallery">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; worker-src 'self'">
+    <link rel="icon" type="image/png" href="./index/assets/cambric-logo.png">
+    <link rel="stylesheet" href="./index/css/main.css">
+    <script src="./services/storage.js"></script>
+    <script src="./services/forms.js"></script>
+    <script src="./index/js/site.js"></script>
+    <title>Cambric Components</title>
+</head>
+<body>
+    <main class="cambric-page">
+        <nav class="site-nav" aria-label="Main navigation">
+            <a class="brand-mark" href="./">Cambric</a>
+            <div class="site-nav-links">
+                <a href="./#principles">Principles</a>
+                <a href="./#contact">Contact</a>
+                <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">Dark mode</button>
+            </div>
+        </nav>
+        <header class="cambric-header">
+            <div>
+                <p class="eyebrow">Cambric components</p>
+                <h1>Useful pieces, ready to adapt.</h1>
+                <p class="hero-copy">A small visual reference for the website foundations included in this template.</p>
+            </div>
+        </header>
+        <section class="cambric-section">
+            <div class="section-heading">
+                <p class="section-label">Status</p>
+                <h2>Clear states</h2>
+            </div>
+            <div class="status-pill" data-state="online">Online</div>
+            <div class="status-pill" data-state="offline">Offline</div>
+        </section>
+        <section class="cambric-section cambric-section-alt">
+            <div class="section-heading">
+                <p class="section-label">Actions</p>
+                <h2>Simple controls</h2>
+                <p>Buttons and links keep their meaning visible and their focus states clear.</p>
+            </div>
+            <p><a class="text-link" href="./">Text link</a></p>
+            <button class="primary-button" type="button">Primary action</button>
+        </section>
+        <footer class="cambric-footer">
+            <a class="text-link" href="./">Back to website</a>
+            <span>Cambric website template</span>
+        </footer>
+    </main>
+</body>
+</html>
