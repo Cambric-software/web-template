@@ -1,4 +1,0 @@
-﻿# Add project-specific Python dependencies here.
-#
-# The base template intentionally keeps this file empty of
-# framework-specific requirements.

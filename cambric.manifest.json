@@ -7,7 +7,7 @@
   "template": "web-template",
   "templateVersion": "1.0.0",
   "platforms": ["web"],
-  "supportedPlatforms": ["web", "windows", "linux", "android"],
+  "supportedPlatforms": ["web"],
   "capabilities": [
     "offline",
     "cache",

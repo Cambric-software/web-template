@@ -25,7 +25,6 @@ function renderWizardSummary(output, values, enabled) {
     output.write(`  ${colorize('Name', 'cyan', enabled)}        ${values.projectName}\n`);
     output.write(`  ${colorize('Product ID', 'cyan', enabled)}  ${toSafeId(values.projectName)}\n`);
     output.write(`  ${colorize('Description', 'cyan', enabled)} ${values.description}\n`);
-    output.write(`  ${colorize('Repository', 'cyan', enabled)}  ${values.repository || 'Not configured'}\n`);
     output.write(`  ${colorize('Folder', 'cyan', enabled)}      ${values.newRootName || 'Keep current folder'}\n\n`);
 }
 
