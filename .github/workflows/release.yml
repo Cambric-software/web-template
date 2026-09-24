@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build release package
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build.js
+          node scripts/release.js
+          mkdir -p release
+          cp dist/release-metadata.json release/release-metadata.json
+          tar -czf "release/cambric-web-template-${GITHUB_REF_NAME}.tar.gz" \
+            index services config cambric.manifest.json
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "Cambric Web Template $GITHUB_REF_NAME" \
+            --generate-notes \
+            release/*
