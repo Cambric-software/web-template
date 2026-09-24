@@ -1,6 +1,6 @@
 # Cambric Web Template
 
-This repository is a local-first, privacy-preserving web foundation for Cambric products. It includes a reusable configuration model, release discovery, cache management, diagnostics, security validation, product manifest, and a browser-first download view.
+This repository is a local-first, privacy-aware website foundation for Cambric products. It provides a polished homepage, reusable configuration, offline support, localization, diagnostics, security validation, and a setup wizard.
 
 ## Interactive setup wizard
 
@@ -8,7 +8,6 @@ The template includes a project wizard. Run the setup command without arguments 
 
 - product name
 - optional description
-- optional release repository
 - optional project folder rename
 
 ```bash
@@ -23,7 +22,7 @@ The wizard updates the project identity, website metadata, manifest fields, and 
 
 ```bash
 npm install
-node scripts/setup.js "My Product" "A privacy-first product description"
+node scripts/setup.js "My Website" "A privacy-first website description"
 ```
 
 ## CLI
@@ -32,17 +31,16 @@ node scripts/setup.js "My Product" "A privacy-first product description"
 node bin/cambric.js setup "My Product" "My description"
 node bin/cambric.js doctor
 node bin/cambric.js build
-node bin/cambric.js release
 node bin/cambric.js version
 ```
 
 ## Structure
 
 - `config/` contains centralized configuration.
-- `index/` contains the website and download page.
+- `index/` contains the website homepage and browser assets.
 - `services/` contains local-first web services.
 - `security/` contains safe validation and secret scanning.
-- `scripts/` contains setup, doctor, build, and release tooling.
+- `scripts/` contains setup, doctor, and build tooling.
 - `tests/` contains automated verification.
 
 ## Production notes
@@ -50,7 +48,7 @@ node bin/cambric.js version
 - The website is designed to run without requiring a mandatory backend.
 - Optional service integrations are isolated and removable.
 - Secrets are never committed to the repository.
-- Cache metadata and release metadata are stored locally with explicit validity checks.
+- Cache metadata is stored locally with explicit validity checks.
 
 ## Testing and validation
 
@@ -58,5 +56,4 @@ node bin/cambric.js version
 npm test
 npm run doctor
 npm run build
-npm run release
 ```

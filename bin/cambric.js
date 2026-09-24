@@ -3,12 +3,11 @@
 const { setupProject, runWizard } = require('../scripts/setup.js');
 const { runDoctor } = require('../scripts/doctor.js');
 const { buildProject } = require('../scripts/build.js');
-const { generateReleaseMetadata } = require('../scripts/release.js');
 const { CAMBRIC_VERSION } = require('../services/version.js');
 
 function printUsage() {
     console.log('Cambric CLI');
-    console.log('Usage: cambric <setup|doctor|test|build|release|clean|cache|update|version|diagnose> [options]');
+    console.log('Usage: cambric <setup|doctor|test|build|clean|cache|update|version|diagnose> [options]');
     console.log('If setup is run without arguments, the interactive wizard will prompt for the project identity.');
 }
 
@@ -22,7 +21,7 @@ async function runCommand(command, args) {
                 return;
             }
 
-            const projectName = args[0] || process.env.CAMBRIC_PROJECT_NAME || 'Cambric Product';
+            const projectName = args[0] || process.env.CAMBRIC_PROJECT_NAME || 'Cambric Website';
             const description = args[1] || process.env.CAMBRIC_PROJECT_DESCRIPTION || 'Cambric local-first website';
             const repository = args[2] || process.env.CAMBRIC_PROJECT_REPOSITORY || '';
             const result = setupProject({ projectName, description, repository, root: process.cwd() });
@@ -39,9 +38,6 @@ async function runCommand(command, args) {
             return;
         case 'build':
             buildProject(process.cwd());
-            return;
-        case 'release':
-            generateReleaseMetadata(process.cwd());
             return;
         case 'clean':
             console.log('Cleanup is handled by the build script in dist output.');

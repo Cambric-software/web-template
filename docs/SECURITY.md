@@ -22,7 +22,5 @@
 
 ## Safe behaviors
 
-- Validate download URLs before surfacing them to the UI.
 - Sanitize output before inserting any user-controlled string into the DOM.
-- Prefer cached metadata over speculative release data.
 - Keep optional external integrations clearly separated and removable.

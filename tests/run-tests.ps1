@@ -10,7 +10,6 @@ $required = @(
     "index/js/version.js",
     "services/storage.js",
     "services/cache.js",
-    "services/release.js",
     "services/ecosystem.js",
     "services/i18n.js",
     "index/service-worker.js",

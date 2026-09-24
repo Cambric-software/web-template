@@ -1,26 +1,16 @@
 ﻿(function (global) {
     const dictionaries = {
         en: {
-            download: "Download",
-            latestVersion: "Latest version",
             offline: "Offline",
             online: "Online",
             cached: "Cached information",
-            firstRun: "Welcome to Cambric",
-            releaseUnavailable: "Release information unavailable",
-            loading: "Loading release information...",
-            noDownloads: "No downloadable release assets are currently available."
+            firstRun: "Welcome to Cambric"
         },
         ar: {
-            download: "تحميل",
-            latestVersion: "أحدث إصدار",
             offline: "غير متصل",
             online: "متصل",
             cached: "معلومات محفوظة مؤقتًا",
-            firstRun: "مرحبًا بك في Cambric",
-            releaseUnavailable: "معلومات الإصدار غير متاحة",
-            loading: "جارٍ تحميل معلومات الإصدار...",
-            noDownloads: "لا توجد أصول قابلة للتنزيل متاحة حاليًا."
+            firstRun: "مرحبًا بك في Cambric"
         }
     };
 

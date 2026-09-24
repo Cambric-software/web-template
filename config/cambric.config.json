@@ -3,21 +3,12 @@
   "environment": "development",
   "product": {
     "id": "cambric-web-product",
-    "name": "Cambric Web Product",
-    "description": "Cambric local-first web template for product download, release discovery, cache management, and privacy-first local tooling.",
+    "name": "Cambric Website",
+    "description": "Cambric local-first website template for accessible, privacy-aware product experiences.",
     "version": "1.0.1",
     "templateVersion": "1.0.0",
-    "websiteTitle": "Cambric Web Product",
+    "websiteTitle": "Cambric Website",
     "owner": "Cambric Software"
-  },
-  "release": {
-    "provider": "github",
-    "repository": "cambricsoftware/web-template",
-    "apiBase": "https://api.github.com",
-    "enabled": true,
-    "allowFallbackCache": true,
-    "cacheDurationMs": 86400000,
-    "checkOnLoad": true
   },
   "cache": {
     "enabled": true,
@@ -29,8 +20,6 @@
   "features": {
     "offline": true,
     "cache": true,
-    "releaseDiscovery": true,
-    "downloadPage": true,
     "ecosystem": true,
     "localization": true,
     "pwa": false,
@@ -39,7 +28,6 @@
   "security": {
     "cspEnabled": false,
     "secretScanEnabled": true,
-    "allowExternalDownloads": true,
     "requireHttpsForSensitiveActions": false,
     "safeUrlPatterns": [
       "https://",
@@ -57,10 +45,6 @@
     "enabled": true,
     "checkOnLoad": true,
     "cacheTtlMs": 86400000
-  },
-  "download": {
-    "platforms": ["windows", "linux", "android", "web"],
-    "defaultPlatform": "web"
   },
   "privacy": {
     "localFirst": true,

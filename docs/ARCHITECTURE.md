@@ -10,18 +10,17 @@ The repository is structured around a local-first web foundation. The web app re
 - `index/` website, assets, and service worker
 - `services/` browser-safe local-first services
 - `security/` safe URL, validation, and secret scanning helpers
-- `scripts/` setup, diagnostics, build, and release tooling
+- `scripts/` setup, diagnostics, and build tooling
 - `tests/` automated validation for the template
 
 ## Runtime foundations
 
 - Central product configuration and manifest validation
-- Semantic version source of truth
+- Product version source of truth
 - Local storage with schema-safe serialization
 - Cache lifecycle management with service worker support
 - Offline status detection and graceful fallback behavior
-- Release discovery and cached fallback metadata
-- Dynamic public download page and platform-aware asset selection
+- Website identity and configurable feature flags
 - Localization and Arabic RTL support
 - Security validation and secret scanning for local and CI use
 
@@ -31,7 +30,6 @@ The repository is structured around a local-first web foundation. The web app re
 node bin/cambric.js setup "My Product" "Product description"
 node bin/cambric.js doctor
 node bin/cambric.js build
-node bin/cambric.js release
 npm test
 ```
 

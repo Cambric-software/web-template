@@ -10,21 +10,14 @@
         window.CAMBRIC_CONFIG = {
             product: {
                 id: "cambric-web-product",
-                name: "Cambric Web Product",
+                name: "Cambric Website",
                 description: "Cambric local-first web template.",
                 version: "1.0.1",
-                websiteTitle: "Cambric Web Product"
-            },
-            release: {
-                repository: "cambricsoftware/web-template",
-                apiBase: "https://api.github.com",
-                allowFallbackCache: true
+                websiteTitle: "Cambric Website"
             },
             features: {
                 offline: true,
                 cache: true,
-                releaseDiscovery: true,
-                downloadPage: true,
                 localization: true,
                 ecosystem: true
             }

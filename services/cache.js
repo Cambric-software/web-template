@@ -1,8 +1,7 @@
 ﻿(function (global) {
     const CAMBRIC_CACHE_VERSION = "cambric-web-v1";
     const CAMBRIC_CACHE_NAMES = [
-        CAMBRIC_CACHE_VERSION,
-        "cambric-release-metadata-v1"
+      CAMBRIC_CACHE_VERSION
     ];
 
     function getCacheStorage() {
@@ -94,8 +93,6 @@ const ASSETS = [
   "/services/storage.js",
   "/services/cache.js",
   "/services/i18n.js",
-  "/services/release.js",
-  "/services/download.js",
   "/services/offline.js"
 ];
 

@@ -65,6 +65,13 @@ h1 {
     font-size: clamp(2rem, 3vw, 2.7rem);
 }
 
+.hero-copy {
+    max-width: 38rem;
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 1.08rem;
+}
+
 .cambric-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -84,18 +91,6 @@ h1 {
     font-weight: 700;
 }
 
-.release-row {
-    margin: 16px 0;
-}
-
-.download-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 20px 0;
-}
-
-.download-button,
 .text-link {
     display: inline-flex;
     align-items: center;
@@ -107,16 +102,10 @@ h1 {
     font-weight: 700;
 }
 
-.download-button {
-    background: var(--primary);
-    color: white;
-}
-
 .text-link {
     color: var(--primary-strong);
 }
 
-.download-button:hover,
 .text-link:hover {
     transform: translateY(-1px);
 }
@@ -125,6 +114,73 @@ h1 {
     margin: 16px 0 0;
     padding-left: 18px;
     color: var(--muted);
+}
+
+.cambric-section {
+    margin-top: 24px;
+    padding: 32px 28px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.cambric-section-alt {
+    background: var(--primary-strong);
+    color: white;
+    border-color: var(--primary-strong);
+}
+
+.cambric-section-alt .section-label,
+.cambric-section-alt .section-heading p {
+    color: #bfdbfe;
+}
+
+.section-heading {
+    max-width: 42rem;
+}
+
+.section-heading h2 {
+    margin-bottom: 10px;
+}
+
+.feature-list#capabilities {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 28px;
+    padding: 0;
+    list-style: none;
+}
+
+.feature-list#capabilities article {
+    padding-top: 18px;
+    border-top: 2px solid var(--border);
+}
+
+.feature-list#capabilities h3 {
+    margin: 12px 0 6px;
+    color: var(--ink);
+}
+
+.feature-list#capabilities p {
+    margin: 0;
+}
+
+.feature-number {
+    color: var(--primary);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.feature-list-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin-bottom: 0;
+}
+
+.cambric-section-alt .feature-list-inline {
+    color: #dbeafe;
 }
 
 .status-pill {
@@ -172,6 +228,14 @@ h1 {
     }
 
     .cambric-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cambric-section {
+        padding: 22px 16px;
+    }
+
+    .feature-list#capabilities {
         grid-template-columns: 1fr;
     }
 

@@ -12,7 +12,6 @@
     "diagnose": "node scripts/doctor.js",
     "test": "node tests/cambric-core.test.js && node tests/basic.test.js",
     "build": "node scripts/build.js",
-    "release": "node scripts/release.js",
     "clean": "node scripts/build.js --clean",
     "cache": "node -e \"const { cambricCacheInfo } = require('./services/cache.js'); cambricCacheInfo().then((info) => console.log(JSON.stringify(info, null, 2))).catch((error) => { console.error(error.message); process.exit(1); });\"",
     "update": "node -e \"console.log('No forced remote updates are required for a local-first template.');\"",

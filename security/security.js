@@ -42,27 +42,10 @@
         return matches;
     }
 
-    function validateReleaseMetadata(metadata) {
-        if (!metadata || typeof metadata !== "object") {
-            return { valid: false, reason: "release metadata was not an object" };
-        }
-
-        if (!metadata.version || !String(metadata.version).trim()) {
-            return { valid: false, reason: "release metadata is missing a version" };
-        }
-
-        if (!metadata.releaseUrl && !metadata.html_url) {
-            return { valid: false, reason: "release metadata is missing a source URL" };
-        }
-
-        return { valid: true };
-    }
-
     const SecurityService = {
         sanitizeText,
         isSafeUrl,
         scanSecrets,
-        validateReleaseMetadata,
         isHttps() {
             if (typeof window === "undefined") {
                 return false;
@@ -72,7 +55,7 @@
     };
 
     if (typeof module !== "undefined") {
-        module.exports = { SecurityService, sanitizeText, isSafeUrl, scanSecrets, validateReleaseMetadata };
+        module.exports = { SecurityService, sanitizeText, isSafeUrl, scanSecrets };
     }
 
     if (global) {

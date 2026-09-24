@@ -46,7 +46,7 @@ function writeJson(filePath, data) {
 
 function writeProjectReadme(root, projectName, description) {
     const readmePath = path.join(root, 'README.md');
-    const projectReadme = `# ${projectName}\n\n${description}\n\n## Getting started\n\n\`\`\`bash\nnpm install\nnpm run doctor\nnpm run build\n\`\`\`\n\n## Notes\n\nThis project is configured for a local-first, privacy-aware release experience with offline-safe browser features and optional GitHub release discovery.\n`;
+    const projectReadme = `# ${projectName}\n\n${description}\n\n## Getting started\n\n\`\`\`bash\nnpm install\nnpm run doctor\nnpm run build\n\`\`\`\n\n## Notes\n\nThis project is configured for a local-first, privacy-aware website experience with offline-safe browser features and optional integrations.\n`;
     fs.writeFileSync(readmePath, projectReadme);
 }
 
@@ -119,11 +119,10 @@ async function promptForWizardValues(input = process.stdin, output = process.std
 
         const lines = (buffer || '').split(/\r?\n/).map((value) => value.trim());
         return {
-            projectName: lines[0] || 'My Cambric Product',
+            projectName: lines[0] || 'My Cambric Website',
             description: lines[1] || 'Local-first Cambric product',
-            repository: lines[2] || '',
-            newRootName: lines[3] || '',
-            confirmed: lines[4] ? !['n', 'no', 'cancel'].includes(lines[4].toLowerCase()) : true
+            newRootName: lines[2] || '',
+            confirmed: lines[3] ? !['n', 'no', 'cancel'].includes(lines[3].toLowerCase()) : true
         };
     }
 
@@ -138,11 +137,10 @@ async function promptForWizardValues(input = process.stdin, output = process.std
         });
     });
 
-    const projectName = await ask('Project name', 'My Cambric Product');
+    const projectName = await ask('Project name', 'My Cambric Website');
     const description = await ask('Project description (optional)', 'Local-first Cambric product');
-    const repository = await ask('Release repository (optional)', '');
     const newRootName = await ask('Rename project folder (optional)', '');
-    const values = { projectName, description, repository, newRootName };
+    const values = { projectName, description, newRootName };
     renderWizardSummary(output, values, useColor);
     const confirmation = await ask('Apply these settings? (Y/n)', 'Y');
 
@@ -152,9 +150,8 @@ async function promptForWizardValues(input = process.stdin, output = process.std
 
 function setupProject(options = {}) {
     const root = options.root || process.cwd();
-    const projectName = sanitizeProjectName(options.projectName || 'Cambric Product');
+    const projectName = sanitizeProjectName(options.projectName || 'Cambric Website');
     const description = sanitizeProjectName(options.description || 'Cambric local-first website');
-    const repository = sanitizeProjectName(options.repository || '');
     const productId = sanitizeProjectName(options.productId || toSafeId(projectName));
 
     if (!projectName) {
@@ -175,16 +172,9 @@ function setupProject(options = {}) {
     config.product.description = description;
     config.product.id = productId;
     config.product.websiteTitle = projectName;
-    if (repository) {
-        config.release.repository = repository;
-    }
-
     manifest.name = projectName;
     manifest.description = description;
     manifest.productId = productId;
-    if (repository) {
-        manifest.releaseRepository = repository;
-    }
 
     writeJson(configPath, config);
     writeJson(manifestPath, manifest);
@@ -193,11 +183,9 @@ function setupProject(options = {}) {
         'Cambric Web Template': projectName,
         'Cambric Web Product': projectName,
         'Cambric Product': projectName,
-        'Cambric Download': `${projectName} Download`,
         'cambric-web-product': productId,
         'cambric-web-template': productId,
         'web-template': productId,
-        'Cambric local-first web template for privacy-preserving release management and product downloads.': description,
         'Cambric local-first website': description,
         'This repository is a local-first, privacy-preserving web foundation for Cambric products.': `This project is a local-first, privacy-preserving web foundation for ${projectName}.`
     };
@@ -273,7 +261,6 @@ async function runWizard() {
         root: projectRoot,
         projectName: values.projectName,
         description: values.description,
-        repository: values.repository,
         productId: safeName,
         newRootName: values.newRootName || ''
     });
@@ -287,14 +274,12 @@ if (require.main === module) {
         try {
             let result;
             if (hasExplicitArgs) {
-                const projectName = args[0] || process.env.CAMBRIC_PROJECT_NAME || 'Cambric Product';
+                const projectName = args[0] || process.env.CAMBRIC_PROJECT_NAME || 'Cambric Website';
                 const description = args[1] || process.env.CAMBRIC_PROJECT_DESCRIPTION || 'Cambric local-first website';
-                const repository = args[2] || process.env.CAMBRIC_PROJECT_REPOSITORY || '';
                 result = setupProject({
                     root: process.cwd(),
                     projectName,
                     description,
-                    repository,
                     productId: toSafeId(projectName)
                 });
             } else {

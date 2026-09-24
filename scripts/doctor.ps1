@@ -13,7 +13,6 @@ $requiredFiles = @(
     "index/js/config.js",
     "services\storage.js",
     "services\cache.js",
-    "services\release.js",
     "services\ecosystem.js",
     "services\i18n.js",
     "services\version.js",

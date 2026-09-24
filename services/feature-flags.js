@@ -2,13 +2,10 @@
     const defaultFeatureFlags = {
         offline: true,
         cache: true,
-        releaseDiscovery: true,
-        downloadPage: true,
         ecosystem: true,
         localization: true,
         pwa: false,
-        extensions: false,
-        appDownloads: true
+        extensions: false
     };
 
     const state = { ...defaultFeatureFlags };

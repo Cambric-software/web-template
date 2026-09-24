@@ -15,8 +15,6 @@ const STATIC_ASSET_PATHS = [
     "services/i18n.js",
     "services/offline.js",
     "services/ecosystem.js",
-    "services/release.js",
-    "services/download.js",
     "config/cambric.config.json"
 ];
 

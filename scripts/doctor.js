@@ -10,7 +10,6 @@ function validateProject(root = process.cwd()) {
         'index/js/app.js',
         'services/storage.js',
         'services/cache.js',
-        'services/release.js',
         'services/i18n.js',
         'services/version.js',
         'security/security.js'

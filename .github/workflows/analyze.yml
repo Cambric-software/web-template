@@ -21,12 +21,10 @@ jobs:
           test -f security/security.js
           test -f services/storage.js
           test -f services/cache.js
-          test -f services/download.js
 
       - name: Basic JavaScript syntax check
         run: |
           node --check index/js/main.js
           node --check services/storage.js
           node --check services/cache.js
-          node --check services/download.js
           node --check security/security.js
