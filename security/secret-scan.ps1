@@ -27,8 +27,8 @@ $matches = @()
 foreach ($extension in $extensions) {
     Get-ChildItem -Path $Root -Filter $extension -Recurse -File -ErrorAction SilentlyContinue |
         Where-Object {
-            $_.FullName -notmatch "\\.git\\" -and
-            $_.FullName -notmatch "\\node_modules\\"
+            $_.FullName -notmatch "[/\\]\.git([/\\]|$)" -and
+            $_.FullName -notmatch "[/\\]node_modules([/\\]|$)"
         } |
         ForEach-Object {
             $content = Get-Content $_.FullName -Raw -ErrorAction SilentlyContinue

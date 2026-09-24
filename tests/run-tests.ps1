@@ -3,18 +3,18 @@
 )
 
 $required = @(
-    "index\index.html",
-    "index\css\main.css",
-    "index\js\app.js",
-    "index\js\config.js",
-    "index\js\version.js",
-    "services\storage.js",
-    "services\cache.js",
-    "services\release.js",
-    "services\ecosystem.js",
-    "services\i18n.js",
-    "index\service-worker.js",
-    "config\cambric.config.json",
+    "index/index.html",
+    "index/css/main.css",
+    "index/js/app.js",
+    "index/js/config.js",
+    "index/js/version.js",
+    "services/storage.js",
+    "services/cache.js",
+    "services/release.js",
+    "services/ecosystem.js",
+    "services/i18n.js",
+    "index/service-worker.js",
+    "config/cambric.config.json",
     "cambric.manifest.json"
 )
 
@@ -29,13 +29,13 @@ foreach ($file in $required) {
     }
 }
 
-& ".\scripts\doctor.ps1"
-if ($LASTEXITCODE -ne 0) {
+& "./scripts/doctor.ps1"
+if (-not $?) {
     $failed++
 }
 
-& ".\security\secret-scan.ps1"
-if ($LASTEXITCODE -ne 0) {
+& "./security/secret-scan.ps1"
+if (-not $?) {
     $failed++
 }
 

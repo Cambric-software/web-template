@@ -5,12 +5,12 @@
 $ErrorActionPreference = "Stop"
 
 $requiredFiles = @(
-    "config\cambric.config.json",
+    "config/cambric.config.json",
     "cambric.manifest.json",
-    "index\index.html",
-    "index\css\main.css",
-    "index\js\app.js",
-    "index\js\config.js",
+    "index/index.html",
+    "index/css/main.css",
+    "index/js/app.js",
+    "index/js/config.js",
     "services\storage.js",
     "services\cache.js",
     "services\release.js",
@@ -18,7 +18,7 @@ $requiredFiles = @(
     "services\i18n.js",
     "services\version.js",
     "security\security.js",
-    "index\service-worker.js"
+    "index/service-worker.js"
 )
 
 $problems = @()
@@ -30,7 +30,7 @@ foreach ($relative in $requiredFiles) {
     }
 }
 
-$configPath = Join-Path $Root "config\cambric.config.json"
+$configPath = Join-Path $Root "config/cambric.config.json"
 if (Test-Path $configPath) {
     try {
         $config = Get-Content $configPath -Raw | ConvertFrom-Json
