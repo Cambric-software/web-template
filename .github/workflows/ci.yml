@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Validate required structure
+        shell: bash
+        run: |
+          test -f index/index.html
+          test -f index/css/main.css
+          test -f index/js/main.js
+          test -f security/security.js
+          test -f services/storage.js
+          test -f services/cache.js
+
+      - name: Basic JavaScript syntax check
+        run: |
+          node --check index/js/main.js
+          node --check services/storage.js
+          node --check services/cache.js
+          node --check security/security.js
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: [validate]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Run Node.js tests
+        run: |
+          node tests/basic.test.js
+          node tests/cambric-core.test.js
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [validate, test]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Build
+        run: node scripts/build.js

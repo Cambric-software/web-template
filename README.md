@@ -1,3 +1,5 @@
+[![CI](https://github.com/Cambric-software/web-template/actions/workflows/ci.yml/badge.svg)](https://github.com/Cambric-software/web-template/actions/workflows/ci.yml)
+
 # Cambric Web Template
 
 This repository is a local-first, privacy-aware website foundation for Cambric products. It provides a polished homepage, reusable configuration, offline support, localization, diagnostics, security validation, and a setup wizard.
