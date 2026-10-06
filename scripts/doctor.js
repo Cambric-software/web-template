@@ -60,6 +60,16 @@ function validateProject(root = process.cwd()) {
 function runDoctor(root = process.cwd()) {
     const result = validateProject(root);
 
+    // Check Node.js version >= 18 (required by engines field in package.json)
+    const nodeVersion = process.versions.node;
+    const nodeMajor = parseInt(nodeVersion.split('.')[0], 10);
+    if (nodeMajor < 18) {
+        console.error(`Node.js ${nodeVersion} detected. Version 18 or higher is required.`);
+        console.error('Update Node.js: https://nodejs.org/');
+        process.exitCode = 1;
+        return { ok: false, problems: [`Node.js >= 18 required, got ${nodeVersion}`] };
+    }
+
     if (!result.ok) {
         console.error('Cambric doctor found issues:');
         for (const problem of result.problems) {
@@ -69,7 +79,7 @@ function runDoctor(root = process.cwd()) {
         return result;
     }
 
-    console.log('Cambric doctor passed.');
+    console.log(`Cambric doctor passed. (Node.js ${nodeVersion})`);
     return result;
 }
 

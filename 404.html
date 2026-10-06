@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page not found — Cambric</title>
+    <link rel="stylesheet" href="./index/css/main.css">
+    <style>
+        .not-found-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+        .not-found-code {
+            font-size: 4rem;
+            font-weight: 700;
+            opacity: 0.15;
+            line-height: 1;
+        }
+    </style>
+    <script>
+        // Redirect to home after a short delay when deployed on GitHub Pages.
+        // Direct URL access (e.g. /about) hits this 404 page — we redirect
+        // to the root so the single-page app can handle the route.
+        (function () {
+            const delay = 3000;
+            const home = '/';
+            setTimeout(function () {
+                window.location.replace(home);
+            }, delay);
+        })();
+    </script>
+</head>
+<body>
+    <main class="cambric-page">
+        <nav class="site-nav" aria-label="Main navigation">
+            <a class="brand-mark" href="./">Cambric</a>
+        </nav>
+        <div class="not-found-page">
+            <p class="not-found-code">404</p>
+            <h1>Page not found</h1>
+            <p>This page doesn't exist or has moved. You'll be redirected to the home page shortly.</p>
+            <a class="primary-button" href="./">Go home now</a>
+        </div>
+    </main>
+</body>
+</html>

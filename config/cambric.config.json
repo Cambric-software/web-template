@@ -30,7 +30,7 @@
     "extensions": false
   },
   "security": {
-    "cspEnabled": false,
+    "cspEnabled": true,
     "secretScanEnabled": true,
     "requireHttpsForSensitiveActions": false,
     "safeUrlPatterns": [
