@@ -1,0 +1,15 @@
+{
+  "lockVersion": 1,
+  "generatedAt": "2026-10-10T00:00:00.000Z",
+  "cambric": {
+    "templateVersion": "1.0.1",
+    "repository": "Cambric-software/web-template"
+  },
+  "environment": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "platform": "windows",
+    "os": "Microsoft Windows 10.0.26200"
+  },
+  "note": "Regenerate with: node scripts/generate.js changelog  |  Check: node scripts/doctor.js"
+}
