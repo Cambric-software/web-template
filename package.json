@@ -20,7 +20,10 @@
     "update": "node -e \"console.log('No forced remote updates are required for a local-first template.');\"",
     "version": "node -p \"require('./services/version.js').CAMBRIC_VERSION\"",
     "lint": "node --check index/js/main.js && node --check index/js/app.js && node --check index/js/site.js && node --check index/js/config.js && node --check index/js/version.js && node --check services/storage.js && node --check services/cache.js && node --check services/i18n.js && node --check services/feature-flags.js && node --check services/offline.js && node --check services/ecosystem.js && node --check services/forms.js && node --check services/version.js && node --check security/security.js && echo 'Lint passed.'",
-    "deploy": "node scripts/deploy_wizard.js"
+    "deploy": "node scripts/deploy_wizard.js",
+    "generate": "node scripts/generate.js",
+    "images": "node scripts/generate.js images",
+    "changelog": "node scripts/generate.js changelog"
   },
   "engines": {
     "node": ">=18"

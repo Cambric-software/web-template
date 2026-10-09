@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --bg: #f8fafc;
     --panel: #ffffff;
     --panel-alt: #eef4ff;
@@ -10,6 +10,7 @@
     --success: #166534;
     --warning: #92400e;
     --shadow: 0 14px 44px rgba(15, 23, 42, 0.08);
+    --color-on-primary: #ffffff;
     --radius: 18px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     line-height: 1.5;
@@ -36,12 +37,12 @@ html { scroll-behavior: smooth; }
 
 body {
     margin: 0;
-    background: linear-gradient(180deg, #f8fafc 0%, #edf4ff 100%);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--panel-alt) 100%);
     color: var(--ink);
 }
 
 :root[data-theme="dark"] body {
-    background: linear-gradient(180deg, #101827 0%, #172235 100%);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--panel-alt) 100%);
 }
 
 .cambric-page {
@@ -96,11 +97,11 @@ body {
 .primary-button {
     border-color: var(--primary);
     background: var(--primary);
-    color: #ffffff;
+    color: var(--color-on-primary, #ffffff);
 }
 
 :root[data-theme="dark"] .primary-button {
-    color: #082f49;
+    color: var(--primary-strong);
 }
 
 .cambric-header,
@@ -203,7 +204,7 @@ h1 {
 
 .cambric-section-alt .section-label,
 .cambric-section-alt .section-heading p {
-    color: #bfdbfe;
+    color: var(--primary);
 }
 
 .section-heading {
@@ -251,7 +252,7 @@ h1 {
 }
 
 .cambric-section-alt .feature-list-inline {
-    color: #dbeafe;
+    color: var(--primary);
 }
 
 .contact-section {
@@ -414,3 +415,4 @@ h1 {
         animation: none !important;
     }
 }
+

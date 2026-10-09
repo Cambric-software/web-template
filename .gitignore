@@ -11,3 +11,7 @@ Thumbs.db
 test-results/
 playwright-report/
 blob-report/
+
+# Cambric local state
+.cambric/
+
