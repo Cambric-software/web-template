@@ -1,4 +1,4 @@
-﻿(function (global) {
+(function (global) {
     function sanitizeText(value) {
         return String(value ?? "")
             .replace(/&/g, "&amp;")

@@ -1,4 +1,4 @@
-﻿(function (global) {
+(function (global) {
     class CambricStorage {
         constructor(options = {}) {
             this.namespace = options.namespace || "cambric";
