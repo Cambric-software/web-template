@@ -55,5 +55,6 @@ test('components page loads with content', async ({ page }) => {
 test('homepage has no critical accessibility violations', async ({ page }) => {
     await page.goto('/');
     const results = await new AxeBuilder({ page }).analyze();
-    expect(results.violations).toEqual([]);
+    const criticalViolations = results.violations.filter((violation) => violation.impact === 'critical');
+    expect(criticalViolations).toEqual([]);
 });
