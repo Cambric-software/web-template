@@ -18,22 +18,27 @@
 }
 
 :root[data-theme="dark"] {
-    --bg: #101827;
-    --panel: #172235;
-    --panel-alt: #1f3048;
+    --bg: #0f172a;
+    --panel: #1a1f3a;
+    --panel-alt: #141b2f;
     --ink: #e5eefb;
-    --muted: #aebdd0;
-    --primary: #7dd3fc;
-    --primary-strong: #38bdf8;
-    --border: #31445d;
-    --success: #86efac;
-    --warning: #fdba74;
-    --shadow: 0 14px 44px rgba(0, 0, 0, 0.24);
+    --muted: #9db4d4;
+    --primary: #60a5fa;
+    --primary-strong: #93c5fd;
+    --border: #2d3e5a;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --shadow: 0 14px 44px rgba(0, 0, 0, 0.4);
 }
 
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+
+html[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
 
 body {
     margin: 0;
@@ -59,6 +64,10 @@ body {
     padding: 8px 4px 24px;
 }
 
+html[dir="rtl"] .site-nav {
+    flex-direction: row-reverse;
+}
+
 .brand-mark {
     color: var(--ink);
     font-size: 1.1rem;
@@ -70,6 +79,10 @@ body {
     display: flex;
     align-items: center;
     gap: 18px;
+}
+
+html[dir="rtl"] .site-nav-links {
+    flex-direction: row-reverse;
 }
 
 .site-nav-links a {
@@ -101,7 +114,8 @@ body {
 }
 
 :root[data-theme="dark"] .primary-button {
-    color: var(--primary-strong);
+    background: var(--primary);
+    color: #ffffff;
 }
 
 .cambric-header,
@@ -119,6 +133,10 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
+}
+
+html[dir="rtl"] .cambric-header {
+    flex-direction: row-reverse;
 }
 
 .eyebrow {
@@ -172,9 +190,6 @@ h1 {
     transition: transform 0.2s ease, background 0.2s ease;
     text-decoration: none;
     font-weight: 700;
-}
-
-.text-link {
     color: var(--primary-strong);
 }
 
@@ -188,6 +203,11 @@ h1 {
     color: var(--muted);
 }
 
+html[dir="rtl"] .feature-list {
+    padding-left: 0;
+    padding-right: 18px;
+}
+
 .cambric-section {
     margin-top: 24px;
     padding: 32px 28px;
@@ -196,10 +216,19 @@ h1 {
     border-radius: var(--radius);
 }
 
+:root[data-theme="dark"] .cambric-section {
+    background: rgba(26, 31, 58, 0.5);
+}
+
 .cambric-section-alt {
     background: var(--primary-strong);
     color: white;
     border-color: var(--primary-strong);
+}
+
+:root[data-theme="dark"] .cambric-section-alt {
+    background: #1e3a5f;
+    border-color: #2d5a8f;
 }
 
 .cambric-section-alt .section-label,
@@ -222,6 +251,10 @@ h1 {
     margin-top: 28px;
     padding: 0;
     list-style: none;
+}
+
+html[dir="rtl"] .feature-list#capabilities {
+    direction: rtl;
 }
 
 .feature-list#capabilities article {
@@ -251,6 +284,10 @@ h1 {
     margin-bottom: 0;
 }
 
+html[dir="rtl"] .feature-list-inline {
+    flex-direction: row-reverse;
+}
+
 .cambric-section-alt .feature-list-inline {
     color: var(--primary);
 }
@@ -261,10 +298,18 @@ h1 {
     gap: 32px;
 }
 
+html[dir="rtl"] .contact-section {
+    direction: rtl;
+}
+
 .contact-form {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
+}
+
+html[dir="rtl"] .contact-form {
+    direction: rtl;
 }
 
 .contact-form label {
@@ -284,6 +329,11 @@ h1 {
     background: var(--bg);
     color: var(--ink);
     font: inherit;
+}
+
+html[dir="rtl"] .contact-form input,
+html[dir="rtl"] .contact-form textarea {
+    text-align: right;
 }
 
 .contact-form textarea {
@@ -346,9 +396,31 @@ h1 {
     color: var(--muted);
 }
 
+html[dir="rtl"] .cambric-footer {
+    flex-direction: row-reverse;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 :focus-visible {
     outline: 3px solid rgba(29, 78, 216, 0.45);
     outline-offset: 3px;
+}
+
+:root[data-theme="dark"] :focus-visible {
+    outline: 3px solid rgba(96, 165, 250, 0.45);
 }
 
 @media (max-width: 700px) {
@@ -382,15 +454,20 @@ h1 {
         gap: 12px;
     }
 
-    .site-nav,
-    .site-nav-links {
-        align-items: flex-start;
+    html[dir="rtl"] .cambric-header,
+    html[dir="rtl"] .cambric-footer {
+        align-items: flex-end;
     }
 
     .site-nav,
     .site-nav-links,
     .contact-section {
         flex-direction: column;
+    }
+
+    html[dir="rtl"] .site-nav,
+    html[dir="rtl"] .site-nav-links {
+        flex-direction: column-reverse;
     }
 
     .site-nav-links {
@@ -415,4 +492,3 @@ h1 {
         animation: none !important;
     }
 }
-
