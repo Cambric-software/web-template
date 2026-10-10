@@ -1,4 +1,4 @@
-﻿(function (global) {
+(function (global) {
     const CAMBRIC_CACHE_VERSION = "cambric-web-v1";
     const CAMBRIC_CACHE_NAMES = [
       CAMBRIC_CACHE_VERSION
