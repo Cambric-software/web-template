@@ -1,4 +1,4 @@
-﻿(function (global) {
+(function (global) {
     const registryKey = "ecosystem-registry";
 
     function getRegistry() {

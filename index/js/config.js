@@ -1,4 +1,4 @@
-﻿(async function () {
+(async function () {
     try {
         const response = await fetch("./config/cambric.config.json", { cache: "no-store" });
         if (!response.ok) {
