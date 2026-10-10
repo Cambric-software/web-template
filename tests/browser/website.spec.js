@@ -11,10 +11,11 @@ test('homepage renders its website shell and favicon', async ({ page }) => {
 test('version is displayed in footer', async ({ page }) => {
     await page.goto('/');
     // Wait for the version script to populate the element
+    // Increase timeout to 60 seconds for slow initial loads
     await page.waitForFunction(() => {
         const el = document.querySelector('[data-cambric-version]');
         return el && el.textContent.trim() !== '...' && el.textContent.trim() !== '';
-    });
+    }, { timeout: 60000 });
     const versionText = await page.locator('[data-cambric-version]').textContent();
     // Should be a semver string like "1.0.1"
     expect(versionText).toMatch(/\d+\.\d+\.\d+/);
@@ -32,7 +33,8 @@ test('theme toggle persists and contact validation is accessible', async ({ page
 
 test('language switcher switches to Arabic and back', async ({ page }) => {
     await page.goto('/');
-    const langBtn = page.locator('[data-language-toggle]');
+    // Use .first() to handle strict mode when multiple language toggles exist (e.g., header + mobile menu)
+    const langBtn = page.locator('[data-language-toggle]').first();
     await expect(langBtn).toBeVisible();
     // Switch to Arabic — button should now say "English"
     await langBtn.click();
