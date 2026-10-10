@@ -6,16 +6,14 @@
     <meta name="description" content="A local-first, privacy-aware website foundation by Cambric.">
     <meta name="theme-color" content="#0f172a">
 
-    <!-- Open Graph / social sharing -->
-    <meta property="og:type"        content="website">
-    <meta property="og:url"         content="https://cambric.dev/">
-    <meta property="og:title"       content="Cambric Website">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cambric.dev/">
+    <meta property="og:title" content="Cambric Website">
     <meta property="og:description" content="A local-first, privacy-aware website foundation by Cambric.">
-    <meta property="og:image"       content="./index/assets/cambric-logo.png">
-    <meta name="twitter:card"       content="summary">
-    <meta name="twitter:title"      content="Cambric Website">
+    <meta property="og:image" content="./index/assets/cambric-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Cambric Website">
     <meta name="twitter:description" content="A local-first, privacy-aware website foundation by Cambric.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; worker-src 'self'">
     <link rel="icon" type="image/png" href="./index/assets/cambric-logo.png">
     <title>Cambric Website</title>
     <link rel="manifest" href="./index/manifest.webmanifest">
@@ -34,27 +32,30 @@
     <script src="./index/js/site.js"></script>
 </head>
 <body>
-    <main class="cambric-page">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <main id="main-content" class="cambric-page">
         <nav class="site-nav" aria-label="Main navigation">
             <a class="brand-mark" href="./">Cambric</a>
             <div class="site-nav-links">
                 <a href="#principles">Principles</a>
                 <a href="#contact">Contact</a>
                 <a href="./components.html">Components</a>
-                <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">Dark mode</button>
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme" aria-pressed="false">Dark mode</button>
                 <button type="button" class="theme-toggle" data-language-toggle aria-label="Switch to Arabic">العربية</button>
             </div>
         </nav>
+
         <header class="cambric-header">
             <div>
                 <p class="eyebrow">Cambric</p>
                 <h1 id="product-name">Cambric Website</h1>
                 <p class="hero-copy">A thoughtful starting point for websites that respect people, load quickly, and keep working offline.</p>
             </div>
-            <div class="status-pill" id="connectivity-status" data-state="online">Online</div>
+            <div class="status-pill" id="connectivity-status" data-state="online" aria-live="polite">Online</div>
         </header>
 
-        <section class="cambric-grid">
+        <section class="cambric-grid" aria-label="Site overview">
             <article class="cambric-card">
                 <p class="section-label">The foundation</p>
                 <h2>Make the web feel considered.</h2>
@@ -70,37 +71,37 @@
             </article>
         </section>
 
-        <section class="cambric-section" id="principles">
+        <section class="cambric-section" id="principles" aria-labelledby="principles-heading">
             <div class="section-heading">
                 <p class="section-label">Principles</p>
-                <h2>Quiet technology. Clear experiences.</h2>
+                <h2 id="principles-heading">Quiet technology. Clear experiences.</h2>
             </div>
-            <div class="feature-list" id="capabilities">
+            <div class="feature-list" id="capabilities" aria-label="Core product principles">
                 <article>
-                    <span class="feature-number">01</span>
+                    <span class="feature-number" aria-hidden="true">01</span>
                     <h3>Local-first</h3>
                     <p>Keep core interactions useful without requiring a server or sending telemetry.</p>
                 </article>
                 <article>
-                    <span class="feature-number">02</span>
+                    <span class="feature-number" aria-hidden="true">02</span>
                     <h3>Accessible by default</h3>
                     <p>Start with semantic HTML, readable contrast, responsive layout, and keyboard-friendly controls.</p>
                 </article>
                 <article>
-                    <span class="feature-number">03</span>
+                    <span class="feature-number" aria-hidden="true">03</span>
                     <h3>Built to become yours</h3>
                     <p>Use the setup wizard to replace the template identity and make the structure your own.</p>
                 </article>
             </div>
         </section>
 
-        <section class="cambric-section cambric-section-alt">
+        <section class="cambric-section cambric-section-alt" aria-labelledby="benefits-heading">
             <div class="section-heading">
                 <p class="section-label">A useful beginning</p>
-                <h2>Start with the parts that matter.</h2>
+                <h2 id="benefits-heading">Start with the parts that matter.</h2>
                 <p>Configuration, caching, offline state, localization, and ecosystem identity are available when your website needs them.</p>
             </div>
-            <ul class="feature-list feature-list-inline">
+            <ul class="feature-list feature-list-inline" aria-label="Feature highlights">
                 <li>Responsive visual system</li>
                 <li>Offline-aware shell</li>
                 <li>English and Arabic localization</li>
@@ -108,30 +109,33 @@
             </ul>
         </section>
 
-        <section class="cambric-section contact-section" id="contact">
+        <section class="cambric-section contact-section" id="contact" aria-labelledby="contact-heading">
             <div class="section-heading">
                 <p class="section-label">Start a conversation</p>
-                <h2>Make this foundation yours.</h2>
+                <h2 id="contact-heading">Make this foundation yours.</h2>
                 <p>The form is intentionally local-first. Connect it to your chosen service when the project is ready.</p>
             </div>
             <form class="contact-form" data-contact-form novalidate>
-                <label>
+                <label for="name-input">
                     Name
-                    <input name="name" autocomplete="name" required>
-                    <span class="field-error" data-error-for="name" role="alert"></span>
                 </label>
-                <label>
+                <input id="name-input" name="name" type="text" autocomplete="name" required>
+                <span class="field-error" data-error-for="name" role="alert"></span>
+
+                <label for="email-input">
                     Email
-                    <input name="email" type="email" autocomplete="email" required>
-                    <span class="field-error" data-error-for="email" role="alert"></span>
                 </label>
-                <label class="field-wide">
+                <input id="email-input" name="email" type="email" autocomplete="email" required>
+                <span class="field-error" data-error-for="email" role="alert"></span>
+
+                <label for="message-input" class="field-wide">
                     Message
-                    <textarea name="message" rows="5" required></textarea>
-                    <span class="field-error" data-error-for="message" role="alert"></span>
                 </label>
-                <button class="primary-button" type="submit">Validate message</button>
-                <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+                <textarea id="message-input" name="message" rows="5" required class="field-wide"></textarea>
+                <span class="field-error field-wide" data-error-for="message" role="alert"></span>
+
+                <button class="primary-button field-wide" type="submit">Validate message</button>
+                <p class="form-status field-wide" data-form-status role="status" aria-live="polite"></p>
             </form>
         </section>
 
