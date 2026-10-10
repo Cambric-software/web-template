@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 document.documentElement.classList.add('js-enabled');
 
