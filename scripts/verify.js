@@ -1,37 +1,29 @@
 const path = require('path');
 const { spawnSync } = require('child_process');
-const { validateProject } = require('./doctor.js');
-const { buildProject, cleanDirectory } = require('./build.js');
+const { runDoctor } = require('./doctor.js');
+const { buildProject } = require('./build.js');
 
 const root = path.join(__dirname, '..');
-const checks = [
-    ['core tests', path.join(root, 'tests', 'cambric-core.test.js')],
-    ['basic tests', path.join(root, 'tests', 'basic.test.js')]
-];
 
-function runCheck(name, script) {
-    const result = spawnSync(process.execPath, [script], {
+function runTest() {
+    const result = spawnSync(process.execPath, [path.join(root, 'tests', 'site.test.js')], {
         cwd: root,
         stdio: 'inherit'
     });
-
     if (result.status !== 0) {
-        throw new Error(`${name} failed.`);
+        throw new Error('Site tests failed.');
     }
 }
 
 function verifyProject() {
-    const validation = validateProject(root);
-    if (!validation.ok) {
-        throw new Error(`Doctor failed: ${validation.problems.join('; ')}`);
+    const doctor = runDoctor(root);
+    if (!doctor.ok) {
+        throw new Error('Doctor failed.');
     }
 
-    for (const [name, script] of checks) {
-        runCheck(name, script);
-    }
-
-    const build = buildProject(root);
-    cleanDirectory(build.distDir);
+    runTest();
+    const { distDir } = buildProject(root);
+    console.log(`Build output: ${path.relative(root, distDir)}`);
     console.log('Cambric verification passed.');
 }
 

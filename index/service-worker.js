@@ -1,65 +1,82 @@
-﻿const CACHE_NAME = "cambric-web-v1";
+﻿/*
+ * Offline shell for the Cambric web template.
+ *
+ * The cache holds only the files in this repository. External requests are not
+ * intercepted, so a product that adds analytics or a CMS keeps control of them.
+ */
+const CACHE_NAME = 'cambric-web-v2';
 
-const STATIC_ASSET_PATHS = [
-    "",
-    "index.html",
-    "manifest.webmanifest",
-    "index/assets/cambric-logo.png",
-    "index/css/main.css",
-    "index/js/version.js",
-    "index/js/config.js",
-    "index/js/app.js",
-    "services/version.js",
-    "services/storage.js",
-    "services/cache.js",
-    "services/i18n.js",
-    "services/offline.js",
-    "services/ecosystem.js",
-    "config/cambric.config.json"
+const SHELL = [
+    './',
+    './index.html',
+    './components.html',
+    './404.html',
+    './config.json',
+    './manifest.webmanifest',
+    './css/main.css',
+    './js/theme.js',
+    './js/site.js',
+    './assets/cambric-logo.png'
 ];
 
-const STATIC_ASSETS = STATIC_ASSET_PATHS.map(assetPath =>
-    new URL(assetPath, self.registration.scope).toString()
-);
-
-self.addEventListener("install", event => {
+self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(STATIC_ASSETS))
+            .then((cache) => cache.addAll(SHELL))
             .then(() => self.skipWaiting())
     );
 });
 
-self.addEventListener("activate", event => {
+self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then(keys =>
-            Promise.all(
+        caches.keys()
+            .then((keys) => Promise.all(
                 keys
-                    .filter(key => key.startsWith("cambric-") && key !== CACHE_NAME)
-                    .map(key => caches.delete(key))
-            )
-        ).then(() => self.clients.claim())
+                    .filter((key) => key.startsWith('cambric-web-') && key !== CACHE_NAME)
+                    .map((key) => caches.delete(key))
+            ))
+            .then(() => self.clients.claim())
     );
 });
 
-self.addEventListener("fetch", event => {
+self.addEventListener('fetch', (event) => {
     const request = event.request;
 
-    if (request.method !== "GET") {
+    if (request.method !== 'GET') {
         return;
     }
 
-    event.respondWith(
-        caches.match(request).then(cached => {
-            const network = fetch(request)
-                .then(response => {
+    const url = new URL(request.url);
+    if (url.origin !== self.location.origin) {
+        return;
+    }
+
+    // Navigations go to the network first so a deployed change is seen, with
+    // the cached home page as the offline fallback.
+    if (request.mode === 'navigate') {
+        event.respondWith(
+            fetch(request)
+                .then((response) => {
                     if (response.ok) {
                         const copy = response.clone();
-
-                        caches.open(CACHE_NAME)
-                            .then(cache => cache.put(request, copy));
+                        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
                     }
+                    return response;
+                })
+                .catch(() => caches.match(request).then((cached) => cached || caches.match('./index.html')))
+        );
+        return;
+    }
 
+    // Static assets are cache-first with a background refresh.
+    event.respondWith(
+        caches.match(request).then((cached) => {
+            const network = fetch(request)
+                .then((response) => {
+                    if (response.ok) {
+                        const copy = response.clone();
+                        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+                    }
                     return response;
                 })
                 .catch(() => cached);

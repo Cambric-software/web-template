@@ -1,139 +1,127 @@
 # Troubleshooting
 
-Common issues and fixes for the Cambric web template.
+Common problems, with the actual cause.
 
 ---
 
-## GitHub Pages not updating after deploy
+## The page is unstyled or a link is broken
 
-**Symptom:** You pushed to `main` and the deploy workflow succeeded, but the live site still shows the old version.
+Open the browser console. The usual cause is an absolute path (`/css/main.css`)
+or a path that assumes the old layout (`./index/css/main.css`). Every local link
+must be relative to the page and start with `./`.
 
-**Cause:** Browser cache.
+Run:
 
-**Fix:** Do a hard reload to bypass the cache:
-- **Windows / Linux**: `Ctrl + Shift + R`
-- **macOS**: `Cmd + Shift + R`
-
-If the site still shows the old version after a hard reload, wait a few minutes — GitHub Pages CDN propagation can take up to 10 minutes. You can also open the site in an incognito/private window to rule out a local cache issue.
-
----
-
-## Service worker caching old version
-
-**Symptom:** You deployed a new version but users (or you) still see old content even after a hard reload. The browser DevTools Network tab shows responses served from `ServiceWorker`.
-
-**Fix:** Clear site data for the origin:
-1. Open DevTools (`F12`)
-2. Go to **Application → Storage**
-3. Click **Clear site data**
-
-Alternatively, unregister the service worker:
-1. Go to **Application → Service Workers**
-2. Click **Unregister**
-3. Reload the page
-
-The updated `service-worker.js` uses a versioned cache key. Bumping the cache version in `index/service-worker.js` will force all clients to update on next load.
-
----
-
-## `node scripts/serve.js` — port already in use
-
-**Symptom:**
-```
-Error: listen EADDRINUSE: address already in use :::3000
-```
-
-**Fix:** Another process is using port 3000. Options:
-
-1. Kill the existing process:
-   ```bash
-   # Windows
-   netstat -ano | findstr :3000
-   taskkill /PID <pid> /F
-
-   # macOS / Linux
-   lsof -ti :3000 | xargs kill
-   ```
-
-2. Start the server on a different port:
-   ```bash
-   PORT=3001 node scripts/serve.js
-   ```
-
----
-
-## Browser test failures — Playwright not installed
-
-**Symptom:**
-```
-Error: browserType.launch: Executable doesn't exist at ...
-```
-or
-```
-Cannot find module '@playwright/test'
-```
-
-**Fix:** Install Playwright and its browser binaries:
 ```bash
-npm ci
-npx playwright install --with-deps chromium
+npm run doctor
 ```
 
-If you only need Chromium (the default), `--with-deps chromium` is faster than installing all browsers.
+It reports every local `href`/`src` whose target does not exist. The Node tests
+run the same check.
+
+---
+
+## The version chip says `unknown`
+
+The page fetches `./config.json`. It fails when:
+
+- you opened `index/index.html` with `file://` (browsers block the fetch),
+- the file is missing or is not valid JSON,
+- the site is served from a path where `config.json` was not copied.
+
+Use `npm run dev` and check that `index/config.json` parses. The version is not
+hard-coded anywhere else on purpose, so a failed fetch is visible instead of
+showing a stale number.
+
+---
+
+## `npm run dev` says the port is in use
+
+Set a different port:
+
+```bash
+# PowerShell
+$env:PORT=4174; npm run dev
+
+# bash
+PORT=4174 npm run dev
+```
+
+The Playwright config expects 4173; change `baseURL`/`PORT` together if you make
+this permanent.
+
+---
+
+## The form says nothing was sent
+
+That is correct. The contact form validates in the browser and stops; it has no
+endpoint. Sending is a product decision, and the template does not pretend to do
+it.
+
+To connect one, replace the final block in `site.js` that sets the success
+status with a `fetch` to your endpoint, keep the validation, and update the copy
+and `SECURITY.md` to say what is sent and where.
+
+---
+
+## Arabic is left-to-right, or the layout scrolls sideways
+
+The language toggle sets `lang` and `dir` on `<html>` and stores the choice.
+Do not set `dir` on a nested element, and do not position elements at
+`left: -9999px`; in RTL that creates a huge horizontal scroll area. The skip link
+uses a vertical transform for this reason.
+
+If a page is stuck in Arabic, clear `cambric:language` in `localStorage`.
+
+---
+
+## Service worker serves an old page
+
+The shell is cache-first. Clear it:
+
+1. DevTools → **Application → Storage → Clear site data**, or
+2. DevTools → **Application → Service Workers → Unregister**, then reload.
+
+For a permanent change, bump `CACHE_NAME` in `index/service-worker.js` and add
+any new file to `SHELL`. A missing entry makes `install` fail, which leaves the
+old worker in control; the Node test checks every entry exists.
+
+---
+
+## GitHub Pages deploys, but the site is stale
+
+- Hard reload (`Ctrl + Shift + R`, `Cmd + Shift + R`) to bypass the browser
+  cache.
+- Check that Pages is set to **GitHub Actions**, not a branch.
+- Open the workflow log and confirm it uploaded `dist/`, not the repository root.
+- A new service worker does not take control until the old tab is closed; test
+  in a private window.
+
+CDN propagation can take a few minutes.
+
+---
+
+## Playwright cannot find Chromium
+
+```bash
+npx playwright install chromium
+```
+
+On Linux CI, use `npx playwright install --with-deps chromium`. The included
+workflow does this.
 
 ---
 
 ## `npm ci` fails
 
-**Symptom:**
-```
-npm error The `npm ci` command can only install with an existing package-lock.json
-```
-or dependency resolution errors after pulling changes.
-
-**Fix:** Delete the lock file and `node_modules`, then reinstall:
-```bash
-# Windows
-rd /s /q node_modules
-del package-lock.json
-npm install
-
-# macOS / Linux
-rm -rf node_modules package-lock.json
-npm install
-```
-
-Then commit the regenerated `package-lock.json`.
+The lockfile must match `package.json`. Run `npm install` once, commit the
+updated `package-lock.json`, and use `npm ci` everywhere else. Do not delete the
+lockfile to make CI pass.
 
 ---
 
-## Arabic text not displaying RTL correctly
+## The doctor fails on versions
 
-**Symptom:** Arabic content renders left-to-right, text is misaligned, or punctuation appears on the wrong side.
-
-**Fix:** Make sure `CambricI18n.setLanguage('ar')` is called before rendering Arabic content. This call sets `dir="rtl"` and `lang="ar"` on the `<html>` element.
-
-```js
-// In your app initialisation
-import { CambricI18n } from './services/i18n.js';
-
-CambricI18n.setLanguage('ar');
-```
-
-Also verify that:
-- The font loaded supports Arabic glyphs.
-- CSS does not hard-code `direction: ltr` or `text-align: left` on affected elements.
-- The `lang` attribute on `<html>` is `ar` after the call (check in DevTools → Elements).
-
----
-
-## Contact form always shows a validation error
-
-**Symptom:** Submitting the contact form always produces a validation error message, even with valid input.
-
-**Explanation:** This is **intentional**. The contact form in `services/forms.js` is a local-first demo component. It validates input client-side but does not submit data to any backend. The validation error demonstrates the error-state UI.
-
-To wire the form to a real backend:
-1. Replace the `handleSubmit` logic in `services/forms.js` with a `fetch` call to your endpoint.
-2. Remove the demo validation guard.
-3. Add CSRF protection if your backend requires it.
+`index/config.json`, `cambric.manifest.json` and `package.json` must carry the
+same version. Edit all three. This is deliberate: three sources that can drift
+are worse than three edits that cannot be skipped silently.

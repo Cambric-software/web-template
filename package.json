@@ -2,31 +2,20 @@
   "name": "cambric-web-template",
   "version": "1.0.1",
   "private": true,
-  "description": "Cambric local-first web template foundation.",
-  "bin": {
-    "cambric": "./bin/cambric.js"
-  },
-  "scripts": {
-    "setup": "node scripts/setup.js",
-    "doctor": "node scripts/doctor.js",
-    "diagnose": "node scripts/doctor.js",
-    "test": "node tests/cambric-core.test.js && node tests/basic.test.js",
-    "test:browser": "playwright test",
-    "build": "node scripts/build.js",
-    "verify": "node scripts/verify.js",
-    "dev": "node scripts/serve.js",
-    "clean": "node scripts/build.js --clean",
-    "cache": "node -e \"const { cambricCacheInfo } = require('./services/cache.js'); cambricCacheInfo().then((info) => console.log(JSON.stringify(info, null, 2))).catch((error) => { console.error(error.message); process.exit(1); });\"",
-    "update": "node -e \"console.log('No forced remote updates are required for a local-first template.');\"",
-    "version": "node -p \"require('./services/version.js').CAMBRIC_VERSION\"",
-    "lint": "node --check index/js/main.js && node --check index/js/app.js && node --check index/js/site.js && node --check index/js/config.js && node --check index/js/version.js && node --check services/storage.js && node --check services/cache.js && node --check services/i18n.js && node --check services/feature-flags.js && node --check services/offline.js && node --check services/ecosystem.js && node --check services/forms.js && node --check services/version.js && node --check security/security.js && echo 'Lint passed.'",
-    "deploy": "node scripts/deploy_wizard.js",
-    "generate": "node scripts/generate.js",
-    "images": "node scripts/generate.js images",
-    "changelog": "node scripts/generate.js changelog"
-  },
+  "description": "A static, local-first website template from Cambric Software.",
+  "license": "MIT",
   "engines": {
     "node": ">=18"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.js",
+    "build": "node scripts/build.js",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "doctor": "node scripts/doctor.js",
+    "test": "node tests/site.test.js",
+    "test:browser": "playwright test",
+    "verify": "node scripts/verify.js",
+    "lint": "node --check index/js/theme.js && node --check index/js/site.js && node --check index/service-worker.js && node --check scripts/build.js && node --check scripts/serve.js && node --check scripts/doctor.js && node --check scripts/verify.js && node --check tests/site.test.js"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

@@ -2,24 +2,12 @@
   "manifestVersion": 1,
   "productId": "cambric-web-product",
   "name": "Cambric Website",
-  "description": "Cambric local-first website template for accessible, privacy-aware product experiences.",
+  "description": "A static, local-first website template from Cambric Software.",
   "version": "1.0.1",
   "template": "web-template",
-  "templateVersion": "1.0.0",
+  "templateVersion": "1.0.1",
   "platforms": ["web"],
-  "supportedPlatforms": ["web"],
-  "capabilities": [
-    "offline",
-    "cache",
-    "localization",
-    "ecosystem",
-    "feature-flags"
-  ],
+  "capabilities": ["offline", "localization"],
   "configurationVersion": 1,
-  "enabledCapabilities": [
-    "offline",
-    "cache",
-    "localization",
-    "ecosystem"
-  ]
+  "enabledCapabilities": ["offline", "localization"]
 }
