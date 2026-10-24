@@ -11,20 +11,20 @@
 /* Tokens ----------------------------------------------------------------- */
 
 :root {
-    --bg: #f6f7fb;
-    --surface: #ffffff;
-    --raised: #f0f2f7;
-    --border: #e0e3ec;
-    --text: #171a22;
-    --muted: #5c6474;
-    --accent: #3f6fe0;
-    --accent-2: #6a44e0;
-    --accent-text: #2f5fcc;
-    --on-accent: #ffffff;
-    --success: #0f6b4c;
-    --warning: #8a5200;
-    --danger: #c63a34;
-    --shadow: 0 10px 30px rgba(23, 26, 34, 0.08);
+    --bg: oklch(0.16 0.02 250);
+    --surface: oklch(0.21 0.025 250);
+    --raised: oklch(0.26 0.03 250);
+    --border: oklch(0.32 0.03 250);
+    --text: oklch(0.95 0.01 90);
+    --muted: oklch(0.7 0.02 250);
+    --accent: oklch(0.85 0.17 150);
+    --accent-2: oklch(0.72 0.19 15);
+    --accent-text: oklch(0.85 0.17 150);
+    --on-accent: oklch(0.16 0.02 250);
+    --success: oklch(0.85 0.17 150);
+    --warning: oklch(0.85 0.15 85);
+    --danger: oklch(0.72 0.19 15);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 
     --radius-card: 14px;
     --radius-button: 11px;
@@ -32,10 +32,10 @@
     --radius-code: 10px;
     --wrap: 1080px;
 
-    --font: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
-    --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    --font: "Space Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
 
-    color-scheme: light;
+    color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {

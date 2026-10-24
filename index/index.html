@@ -1,4 +1,4 @@
-ï»¿<!doctype html>
+<!doctype html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
     <meta property="og:title" content="Cambric Website">
     <meta property="og:description" content="A static, local-first website template from Cambric Software.">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'">
 
     <title>Cambric Website</title>
     <link rel="icon" type="image/png" href="./assets/cambric-logo.png">
@@ -20,7 +20,7 @@
 
     <!-- Runs before paint so a stored theme does not flash. -->
     <script src="./js/theme.js"></script>
-</head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></head>
 <body>
     <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
@@ -42,7 +42,7 @@
                     <span class="theme-icon" aria-hidden="true"></span>
                     <span class="theme-label" data-i18n="theme.dark">Dark</span>
                 </button>
-                <button class="button small ghost" type="button" data-language-toggle aria-label="Switch to Arabic">Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</button>
+                <button class="button small ghost" type="button" data-language-toggle aria-label="Switch to Arabic">ÇáÚÑÈíÉ</button>
             </div>
         </div>
     </header>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="hero-meta">
-                <span class="chip" data-version>â€¦</span>
+                <span class="chip" data-version>…</span>
                 <span class="chip" data-i18n="chip.static">Static</span>
                 <span class="status" data-connectivity data-state="online">
                     <span class="dot" aria-hidden="true"></span>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="card code-card">
                     <p class="caption">npm run verify</p>
-                    <pre class="code"><code>doctor â†’ tests â†’ build
+                    <pre class="code"><code>doctor ? tests ? build
 no dependencies required</code></pre>
                     <p class="note">
                         Run <code>npm run dev</code> to preview at
@@ -210,8 +210,8 @@ no dependencies required</code></pre>
     <footer class="site-footer">
         <div class="wrap footer-inner">
             <p>
-                Â© <span data-year>2026</span> Cambric Software Â·
-                <span class="mono" data-version>â€¦</span>
+                © <span data-year>2026</span> Cambric Software ·
+                <span class="mono" data-version>…</span>
             </p>
             <nav aria-label="Legal">
                 <a href="https://github.com/Cambric-software/web-template/blob/main/LICENSE" data-i18n="footer.licence">MIT licence</a>

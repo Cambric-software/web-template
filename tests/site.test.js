@@ -104,8 +104,8 @@ for (const entry of shellEntries) {
 
 const css = read('index/css/main.css');
 for (const token of [
-    '--accent: #3f6fe0',
-    '--bg: #0e1015',
+    '--accent: oklch(0.85 0.17 150)',
+    '--bg: oklch(0.16 0.02 250)',
     '--radius-card: 14px',
     '--radius-button: 11px',
     'prefers-reduced-motion'
