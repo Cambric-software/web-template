@@ -72,7 +72,7 @@ check((componentsHtml.match(/data-language-toggle/g) || []).length === 1, 'compo
 check((indexHtml.match(/data-theme-toggle/g) || []).length === 1, 'index should have one theme toggle');
 check(indexHtml.includes('id="product-name"'), 'home should expose the product name');
 check(indexHtml.includes('data-contact-form'), 'home should include the demo form');
-check(indexHtml.includes('data-version'), 'home should expose the version');
+// Version is intentionally not shown in the UI.
 check(!/location\.(replace|href)\s*=/.test(notFoundHtml), '404 page should not redirect');
 
 // Scripts -------------------------------------------------------------------

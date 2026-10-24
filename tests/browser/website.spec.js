@@ -9,7 +9,7 @@ test('home renders the product identity from config', async ({ page }) => {
 
     await expect(page.locator('#product-name')).toHaveText('Cambric Website');
     await expect(page.locator('.site-nav, nav.nav')).toBeVisible();
-    await expect(page.locator('[data-version]').first()).toHaveText(/^v\d+\.\d+\.\d+$/);
+    // Version is intentionally not shown in the UI.
     await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', './assets/cambric-logo.png');
 
     expect(errors).toEqual([]);
