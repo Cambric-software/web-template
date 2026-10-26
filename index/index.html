@@ -1,68 +1,226 @@
-Ôªø<!doctype html>
+<!doctype html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cambric product download and release page">
-    <meta name="theme-color" content="#0f172a">
-    <title>Cambric Product</title>
-    <link rel="manifest" href="/index/manifest.webmanifest">
-    <link rel="stylesheet" href="/index/css/main.css">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="A static, local-first website template from Cambric Software.">
+    <meta name="theme-color" content="#f6f7fb">
 
-    <script src="/services/version.js"></script>
-    <script src="/index/js/version.js"></script>
-    <script src="/services/storage.js"></script>
-    <script src="/services/cache.js"></script>
-    <script src="/services/i18n.js"></script>
-    <script src="/services/offline.js"></script>
-    <script src="/services/ecosystem.js"></script>
-    <script src="/services/release.js"></script>
-    <script src="/services/download.js"></script>
-    <script src="/index/js/config.js"></script>
-    <script src="/index/js/app.js"></script>
-</head>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Cambric Website">
+    <meta property="og:description" content="A static, local-first website template from Cambric Software.">
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'">
+
+    <title>Cambric Website</title>
+    <link rel="icon" type="image/png" href="./assets/cambric-logo.png">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <!-- Runs before paint so a stored theme does not flash. -->
+    <script src="./js/theme.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></head>
 <body>
-    <main class="cambric-page">
-        <header class="cambric-header">
-            <div>
-                <p class="eyebrow">Cambric</p>
-                <h1 id="product-name">Cambric Product</h1>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a class="brand" href="./">
+                <span class="brand-mark" aria-hidden="true">C</span>
+                <span class="brand-name">Cambric</span>
+            </a>
+
+            <nav class="nav" aria-label="Main navigation">
+                <a href="#inside" data-i18n="nav.inside">What's inside</a>
+                <a href="./components.html" data-i18n="nav.components">Components</a>
+                <a href="#contact" data-i18n="nav.contact">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-button" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+                    <span class="theme-icon" aria-hidden="true"></span>
+                    <span class="theme-label" data-i18n="theme.dark">Dark</span>
+                </button>
+                <button class="button small ghost" type="button" data-language-toggle aria-label="Switch to Arabic">«·⁄—»Ì…</button>
             </div>
-            <div class="status-pill" id="connectivity-status" data-state="online">Online</div>
-        </header>
+        </div>
+    </header>
 
-        <section class="cambric-grid">
-            <article class="cambric-card">
-                <p class="section-label">Current release</p>
-                <h2 id="release-name">Loading release information...</h2>
-                <p class="release-row">
-                    <strong>Version:</strong>
-                    <span data-release-version>Loading...</span>
-                </p>
-                <div class="download-actions" id="downloads"></div>
-                <a class="text-link" data-release-url hidden target="_blank" rel="noopener noreferrer">Release information</a>
-            </article>
+    <main id="main">
+        <section class="wrap hero">
+            <p class="eyebrow" data-i18n="hero.eyebrow">Cambric web template</p>
+            <h1 id="product-name">Cambric Website</h1>
+            <p class="lede" data-i18n="hero.lede">
+                A calm, local-first foundation for Cambric websites. Static by
+                default, bilingual, and one design system away from your product.
+            </p>
 
-            <article class="cambric-card">
-                <p class="section-label">Installation</p>
-                <h2>Local-first setup</h2>
-                <p>
-                    This template keeps the website usable without requiring a mandatory backend. Release metadata, caching,
-                    and local preferences stay on the device by default.
-                </p>
-                <ul class="feature-list">
-                    <li>Offline-safe browsing</li>
-                    <li>Version-aware downloads</li>
-                    <li>Cached release fallback</li>
-                    <li>Configurable product identity</li>
-                </ul>
-            </article>
+            <div class="hero-actions">
+                <a class="button primary" href="#inside" data-i18n="hero.primary">See what's inside</a>
+                <a class="button" href="./components.html" data-i18n="hero.secondary">Component gallery</a>
+            </div>
+
+            <div class="hero-meta">
+</span>
+                <span class="chip" data-i18n="chip.static">Static</span>
+                <span class="status" data-connectivity data-state="online">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span data-connectivity-label data-i18n="status.online">Online</span>
+                </span>
+            </div>
         </section>
 
-        <footer class="cambric-footer">
-            <span>Version</span>
-            <span data-cambric-version>...</span>
-        </footer>
+        <section class="wrap section" id="inside">
+            <div class="section-head">
+                <h2 data-i18n="inside.title">What you get</h2>
+                <p data-i18n="inside.lede">
+                    Four decisions are already made, so a new site starts at the
+                    first product decision instead of at bootstrap.
+                </p>
+            </div>
+
+            <div class="grid cards">
+                <article class="card">
+                    <p class="card-number">01</p>
+                    <h3 data-i18n="card.static.title">Static by default</h3>
+                    <p data-i18n="card.static.body">
+                        Plain HTML, CSS and JavaScript. No framework, no build
+                        step required to open it, and no runtime dependency.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <p class="card-number">02</p>
+                    <h3 data-i18n="card.local.title">Local-first</h3>
+                    <p data-i18n="card.local.body">
+                        Settings live in this browser, the service worker keeps
+                        the shell available offline, and nothing is sent anywhere.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <p class="card-number">03</p>
+                    <h3 data-i18n="card.bilingual.title">Bilingual</h3>
+                    <p data-i18n="card.bilingual.body">
+                        English and Arabic, including right-to-left layout, with
+                        the choice remembered between visits.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <p class="card-number">04</p>
+                    <h3 data-i18n="card.design.title">One design</h3>
+                    <p data-i18n="card.design.body">
+                        The same palette, radii and component shapes as the
+                        Cambric app and download pages.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="wrap section">
+            <div class="section-head">
+                <h2 data-i18n="how.title">How it works</h2>
+                <p data-i18n="how.lede">Three edits turn the template into a product site.</p>
+            </div>
+
+            <ol class="steps">
+                <li>
+                    <h3 data-i18n="how.one.title">Set the identity</h3>
+                    <p data-i18n="how.one.body">
+                        Edit <code>index/config.json</code> and
+                        <code>cambric.manifest.json</code>: name, id, version,
+                        description.
+                    </p>
+                </li>
+                <li>
+                    <h3 data-i18n="how.two.title">Replace the copy</h3>
+                    <p data-i18n="how.two.body">
+                        Rewrite the hero, the four cards and the contact
+                        section. Keep the structure and tokens.
+                    </p>
+                </li>
+                <li>
+                    <h3 data-i18n="how.three.title">Deploy <code>dist/</code></h3>
+                    <p data-i18n="how.three.body">
+                        Run <code>npm run build</code> and publish the output to
+                        any static host. The included workflow can deploy to
+                        GitHub Pages.
+                    </p>
+                </li>
+            </ol>
+        </section>
+
+        <section class="wrap section">
+            <div class="split">
+                <div>
+                    <h2 data-i18n="components.title">The pieces are documented</h2>
+                    <p class="muted" data-i18n="components.body">
+                        Buttons, cards, chips, status, form fields and empty
+                        states are on one page, so a new screen starts from a
+                        known component instead of a new one.
+                    </p>
+                    <a class="button" href="./components.html" data-i18n="components.action">Open the gallery</a>
+                </div>
+                <div class="card code-card">
+                    <p class="caption">npm run verify</p>
+                    <pre class="code"><code>doctor ? tests ? build
+no dependencies required</code></pre>
+                    <p class="note">
+                        Run <code>npm run dev</code> to preview at
+                        <code>http://localhost:4173</code>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="wrap section" id="contact">
+            <div class="split">
+                <div>
+                    <p class="eyebrow" data-i18n="contact.eyebrow">Contact form</p>
+                    <h2 data-i18n="contact.title">Validation that works without a server</h2>
+                    <p class="muted" data-i18n="contact.body">
+                        This form checks the fields in the browser and stops.
+                        It does not send anything and does not pretend to. Wire
+                        it to your own endpoint when the product is ready.
+                    </p>
+                </div>
+
+                <form class="card form" data-contact-form novalidate>
+                    <label for="contact-name" data-i18n="form.name">Name</label>
+                    <input id="contact-name" name="name" autocomplete="name" aria-describedby="error-name" required>
+                    <span class="field-error" id="error-name" data-error-for="name" role="alert"></span>
+
+                    <label for="contact-email" data-i18n="form.email">Email</label>
+                    <input id="contact-email" name="email" type="email" autocomplete="email" aria-describedby="error-email" required>
+                    <span class="field-error" id="error-email" data-error-for="email" role="alert"></span>
+
+                    <label for="contact-message" data-i18n="form.message">Message</label>
+                    <textarea id="contact-message" name="message" rows="4" aria-describedby="error-message" required></textarea>
+                    <span class="field-error" id="error-message" data-error-for="message" role="alert"></span>
+
+                    <button class="button primary" type="submit" data-i18n="form.submit">Validate message</button>
+                    <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <p>
+                © <span data-year>2026</span> Cambric Software ∑
+</span>
+            </p>
+            <nav aria-label="Legal">
+                <a href="https://github.com/Cambric-software/web-template/blob/main/LICENSE" data-i18n="footer.licence">MIT licence</a>
+                <a href="https://github.com/Cambric-software/web-template/blob/main/SECURITY.md" data-i18n="footer.security">Security</a>
+                <a href="https://github.com/Cambric-software/web-template" data-i18n="footer.source">Source</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="./js/site.js"></script>
 </body>
 </html>

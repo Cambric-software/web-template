@@ -2,7 +2,8 @@
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,36 +16,30 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: ${{ github.ref_name == 'main' && 'github-pages' || 'github-pages' }}
-      url: ${{ steps.deployment.outputs.page_url }}
-
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-      - name: Prepare website
-        run: |
-          mkdir -p dist
-          mkdir -p dist/index
-          cp index/index.html dist/index.html
-          cp index/manifest.webmanifest dist/manifest.webmanifest
-          cp index/service-worker.js dist/service-worker.js
-          cp -r index/css dist/index/
-          cp -r index/js dist/index/
-          cp -r services dist/services
-          cp -r config dist/config
-          cp cambric.manifest.json dist/cambric.manifest.json
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Verify and build
+        run: npm run verify
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      - name: Deploy
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "cambric-web-product",
+    "name": "Cambric Website",
+    "description": "A static, local-first website template from Cambric Software.",
+    "version": "1.0.1",
+    "owner": "Cambric Software",
+    "repository": "Cambric-software/web-template"
+  },
+  "site": {
+    "url": ""
+  },
+  "localization": {
+    "defaultLanguage": "en",
+    "supportedLanguages": ["en", "ar"],
+    "rtlLanguages": ["ar"]
+  }
+}
